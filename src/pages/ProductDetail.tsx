@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import data from "../data/products.json";
+import React from 'react';
+
 
 interface Product {
   id: number;

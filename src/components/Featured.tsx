@@ -1,5 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import React from 'react';
+
 
 import 'swiper/swiper-bundle.css';
 import ProductCard from './ProductCard';
