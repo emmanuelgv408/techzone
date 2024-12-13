@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "iPad Pro",
+    "category": "Tablet",
+    "price": "$799.99",
+    "image": "/images/macbookproimage.jpg",
+    "description": "Apple iPad Pro with M2 chip and Liquid Retina display.",
+    "brand": "Apple",
+    "backgroundImage": "/images/tabletscategory.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Samsung Galaxy Tab S8",
+    "category": "Tablet",
+    "price": "$699.99",
+    "image": "/images/samsunggalaxyimage.jpg",
+    "description": "Samsung's premium tablet with S Pen and AMOLED display.",
+    "brand": "Samsung",
+    "backgroundImage": "/images/smartphonescategory.jpg"
+  },
+  {
+    "id": 3,
+    "name": "iPhone 15 Pro",
+    "category": "Phone",
+    "price": "$999.99",
+    "image": "/images/iphoneproimage.jpg",
+    "description": "Apple's latest smartphone with A17 Bionic chip.",
+    "brand": "Apple",
+    "backgroundImage": "/images/smartphonescategory.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Google Pixel 8",
+    "category": "Phone",
+    "price": "$899.99",
+    "image": "/images/googlepixelimage.jpg",
+    "description": "Google's flagship phone with Tensor G3 and advanced AI features.",
+    "brand": "Google",
+    "backgroundImage": "/images/smartphonescategory.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Dell XPS 15",
+    "category": "Laptop",
+    "price": "$1,499.99",
+    "image": "/images/googlexpsimage.jpg",
+    "description": "High-performance laptop with InfinityEdge display.",
+    "brand": "Dell",
+    "backgroundImage": "/images/laptopscategory.jpg"
+  },
+  {
+    "id": 6,
+    "name": "MacBook Air M2",
+    "category": "Laptop",
+    "price": "$1,199.99",
+    "image": "/images/macbookproimage.jpg",
+    "description": "Thin and light laptop with M2 chip and all-day battery life.",
+    "brand": "Apple",
+    "backgroundImage": "/images/laptopscategory.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Canon EOS R10",
+    "category": "Camera",
+    "price": "$999.99",
+    "image": "/images/canonimage.jpg",
+    "description": "Mirrorless camera with advanced autofocus and 24MP sensor.",
+    "brand": "Canon",
+    "backgroundImage": "/images/camerascategory.jpg"
+  }
+]
+
+
+
+
+
