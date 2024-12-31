@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar";
+import './index.css'
 
 const App = () => {
   return (
