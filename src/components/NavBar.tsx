@@ -1,8 +1,19 @@
 import React from 'react'
 
+import { assets } from '../assets/assets';
+
+
+
+
+
+
+
 const NavBar = () => {
   return (
-    <div>NavBar</div>
+    <div className='text-white bg-black'>
+        <div className='text-red-400'>Techzone</div>
+        
+    </div>
   )
 }
 
