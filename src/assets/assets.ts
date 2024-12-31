@@ -18,14 +18,14 @@ import laptopCategory from './LaptopCategory.jpg';
 import smartphoneCategory from './SmartphoneCategory.jpg';
 import wearablesCategory from './WearablesCategory.jpg';
 
-import heroImg from './Hero.jpg';
+import heroImg from './HeroImg.jpg';
 import bars_icon from './icons/bars.svg';
 import cart_icon from './icons/cart.svg';
 import categories_icon from './icons/categories.svg';
 import heart_icon from './icons/heart.svg';
 import search_icon from './icons/search.svg';
-import user_icon from 'user.svg';
-import x_icon from './x.svg';
+import user_icon from './icons/user.svg';
+import x_icon from './icons/x.svg';
 
 // Type for the assets object
 export type AssetKeys = 'heroImg' | 'bars_icon' | 'cart_icon' | 'categories_icon' | 'heart_icon' | 'search_icon' | 'user_icon' | 'x_icon';
