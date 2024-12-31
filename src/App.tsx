@@ -14,7 +14,7 @@ import './index.css'
 
 const App = () => {
   return (
-    <div className="px-4">
+    <div className=" ">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
