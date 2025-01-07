@@ -79,7 +79,7 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {menuVisible && (
         <div
-          className={`w-[80%] fixed top-0 right-0 bottom-0 z-10 bg-slate-400 bg-opacity-90 flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
+          className={`w-[80%] fixed top-0 right-0 bottom-0 z-10 bg-slate-600  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
             menuVisible ? "translate-x-0" : "translate-x-full"
           }`}
         >
