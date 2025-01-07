@@ -7,7 +7,7 @@ const NavBar = () => {
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
   return (
-    <div className="relative flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-slate-600 text-white ">
+    <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-slate-600 text-white ">
       <div className="text-xl">
         <Link to="/" className="cursor-pointer text-white">
           Techzone
