@@ -11,39 +11,38 @@ import { Product } from "../assets/assets";
 
 const Featured = () => {
   const { products } = useContext(ShopContext);
-  const featuredProducts = products?.slice(0,4) || [];
+  const featuredProducts = products?.slice(0, 6) || []; // Get the first 9 products
   console.log(featuredProducts);
 
-
   return (
-    <div className="h-[60vh] px-3 py-5">
-      <h1 className="text-2xl text-center">Featured Tech</h1>
-      <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={20}
-        slidesPerView={2.5} 
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
-        className="my-3"
-        breakpoints={{
-          640: {
-            slidesPerView: 1.5, 
-          },
-          768: {
-            slidesPerView: 2.5, 
-          },
-          1024: {
-            slidesPerView: 3, 
-            slidesPerGroup: 3, 
-          },
-        }}
-      >
+    <div className="px-3 py-5">
+      <h1 className="text-2xl text-center mb-5">Featured Tech</h1>
+      {/* Swiper for small screens */}
+      <div className="block md:hidden">
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={20}
+          slidesPerView={2.5}
+          onSwiper={(swiper) => console.log(swiper)}
+          onSlideChange={() => console.log("slide change")}
+          className="my-3"
+        >
+          {featuredProducts.map((product: Product) => (
+            <SwiperSlide key={product.id}>
+              <ProductCard product={product} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Grid for medium screens and above */}
+      <div className="hidden md:grid grid-cols-3 gap-5">
         {featuredProducts.map((product: Product) => (
-          <SwiperSlide key={product.id}>
+          <div key={product.id}>
             <ProductCard product={product} />
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </div>
     </div>
   );
 };
