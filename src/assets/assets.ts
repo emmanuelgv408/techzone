@@ -26,9 +26,10 @@ import heart_icon from './icons/heart.svg';
 import search_icon from './icons/search.svg';
 import user_icon from './icons/user.svg';
 import x_icon from './icons/x.svg';
+import down_icon from './icons/down.svg';
 
 // Type for the assets object
-export type AssetKeys = 'heroImg' | 'bars_icon' | 'cart_icon' | 'categories_icon' | 'heart_icon' | 'search_icon' | 'user_icon' | 'x_icon';
+export type AssetKeys = 'heroImg' | 'bars_icon' | 'cart_icon' | 'categories_icon' | 'heart_icon' | 'search_icon' | 'user_icon' | 'x_icon' | 'down_icon';
 
 // Type for assets record
 export const assets: Record<AssetKeys, string> = {
@@ -39,7 +40,8 @@ export const assets: Record<AssetKeys, string> = {
     heart_icon,
     search_icon,
     user_icon,
-    x_icon
+    x_icon,
+    down_icon
 };
 
 // Define product type

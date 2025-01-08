@@ -14,6 +14,71 @@ const NavBar = () => {
         </Link>
       </div>
 
+
+
+      <div className="  hidden  md:block ">
+        <ul className="flex flex-wrap justify-center items-center gap-4 text-sm px-6">
+          <li className="w-[120px]">
+            <Link
+              to="/laptops"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Laptops
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link
+              to="/smartphones"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Smartphones
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link to="/wearables" className="cursor-pointer flex gap-1">
+              Wearables
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link to="/accessories" className="cursor-pointer flex gap-1">
+              Accessories
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link to="/gaming" className="cursor-pointer flex gap-1">
+              Gaming
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link to="/audio" className="cursor-pointer flex gap-1">
+              Audio
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link to="/cameras" className="cursor-pointer flex gap-1">
+              Cameras
+              <img src={assets.down_icon} alt="down" className="w-4" />
+            </Link>
+          </li>
+          <li className="w-[120px]">
+            <Link
+              to="/all-products"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              All Products
+            </Link>
+          </li>
+        </ul>
+              
+          </div>
+
+
       <div className="flex">
         <ul className="flex items-center gap-3 md:gap-7 ">
           <li className="flex-shrink-0">
