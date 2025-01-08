@@ -7,80 +7,83 @@ const NavBar = () => {
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
   return (
-    <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-slate-600 text-white ">
+    <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center ">
       <div className="text-xl">
-        <Link to="/" className="cursor-pointer text-white">
+        <Link to="/" className="cursor-pointer text-white uppercase font-extrabold">
           Techzone
         </Link>
       </div>
 
 
 
-      <div className="  hidden  md:block ">
-        <ul className="flex flex-wrap justify-center items-center gap-4 text-sm px-6">
-          <li className="w-[120px]">
-            <Link
-              to="/laptops"
-              className="cursor-pointer flex gap-1 text-white"
-            >
-              Laptops
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link
-              to="/smartphones"
-              className="cursor-pointer flex gap-1 text-white"
-            >
-              Smartphones
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link to="/wearables" className="cursor-pointer flex gap-1">
-              Wearables
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link to="/accessories" className="cursor-pointer flex gap-1">
-              Accessories
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link to="/gaming" className="cursor-pointer flex gap-1">
-              Gaming
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link to="/audio" className="cursor-pointer flex gap-1">
-              Audio
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link to="/cameras" className="cursor-pointer flex gap-1">
-              Cameras
-              <img src={assets.down_icon} alt="down" className="w-4" />
-            </Link>
-          </li>
-          <li className="w-[120px]">
-            <Link
-              to="/all-products"
-              className="cursor-pointer flex gap-1 text-white"
-            >
-              All Products
-            </Link>
-          </li>
-        </ul>
-              
-          </div>
+      <div className="hidden md:block">
+  <ul className="flex flex-wrap justify-center items-center gap-5 text-sm px-3">
+    <li className="min-w-[17%]">
+      <Link to="/laptops" className="cursor-pointer flex gap-1 text-white">
+        Laptops
+        <img src={assets.down_icon} alt="down" className=" w-5" />
+      </Link>
+    </li>
+    <li className="min-w-[17%]">
+      <Link to="/smartphones" className="cursor-pointer flex gap-1 text-white">
+        Smartphones
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[17%]">
+      <Link to="/wearables" className="cursor-pointer flex gap-1 text-white">
+        Wearables
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[17%]">
+      <Link to="/accessories" className="cursor-pointer flex gap-1 text-white">
+        Accessories
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[20%]">
+      <Link to="/gaming" className="cursor-pointer flex gap-1 text-white">
+        Gaming
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[17%]">
+      <Link to="/audio" className="cursor-pointer flex gap-1 text-white">
+        Audio
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[20%]">
+      <Link to="/cameras" className="cursor-pointer flex gap-1 text-white">
+        Cameras
+        <svg className="w-4 h-4 text-white">
+          <use xlinkHref={assets.down_icon}></use>
+        </svg>
+      </Link>
+    </li>
+    <li className="min-w-[17%]">
+      <Link to="/all-products" className="cursor-pointer flex gap-1 text-white">
+        All Products
+      </Link>
+    </li>
+  </ul>
+</div>
 
 
-      <div className="flex">
-        <ul className="flex items-center gap-3 md:gap-7 ">
+
+      <div className="flex mr-3">
+        <ul className="flex items-center gap-3  ">
           <li className="flex-shrink-0">
             <img
               className="w-6 h-6 cursor-pointer fill-current text-white"
@@ -101,7 +104,7 @@ const NavBar = () => {
             </Link>
           </li>
 
-          <li className="flex-shrink-0">
+          <li className="flex-shrink-0 ">
             <Link to="/cart" className="cursor-pointer">
               <img
                 className="w-6 h-6 fill-current text-white"
