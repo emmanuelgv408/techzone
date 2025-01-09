@@ -5,6 +5,26 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
+  const [mobileDropdown, setMobileDropdown] = useState<
+    Record<string, boolean>
+  >({
+    laptops: false,
+    smartphone: false,
+    wearables: false,
+    gaming: false,
+    audio: false,
+    camaras: false,
+  });
+
+  const toggleMobileDropdown = (category: keyof Record<string, boolean>) => {
+    setMobileDropdown((prevState) => ({
+      ...prevState,
+      [category]: !prevState[category],
+    }));
+  };
+  
+
+  
 
   return (
     <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center ">
@@ -203,58 +223,141 @@ const NavBar = () => {
             menuVisible ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex w-screen justify-end p-3">
-            <img
-              src={assets.x_icon}
-              alt="x"
+          <div className="flex w-screen justify-end p-3 mt-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="#ffffff"
               onClick={() => setMenuVisible(!menuVisible)}
-              className="w-[25px] mr-9 cursor-pointer fill-current text-white"
-            />
+              className="w-[25px] mr-9 cursor-pointer text-white"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </div>
 
-          <ul className="text-white mt-10 w-[80%]">
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/laptops" className="cursor-pointer text-white">
-                Laptops
-              </Link>
+          <ul className="text-white mt-10 w-[80%] text-sm">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/laptops" className="cursor-pointer text-white">
+                  Laptops
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/smartphones" className="cursor-pointer text-white">
-                Smartphones
-              </Link>
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/smartphones" className="cursor-pointer text-white">
+                  Smartphones
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/wearables" className="cursor-pointer text-white">
-                Wearables
-              </Link>
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/wearables" className="cursor-pointer text-white">
+                  Wearables
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/accessories" className="cursor-pointer text-white">
-                Accessories
-              </Link>
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/gaming" className="cursor-pointer text-white">
+                  Gaming
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/gaming" className="cursor-pointer text-white">
-                Gaming
-              </Link>
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/audio" className="cursor-pointer text-white">
+                  Audio
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/audio" className="cursor-pointer text-white">
-                Audio
-              </Link>
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/cameras" className="cursor-pointer text-white">
+                  Cameras
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
-            <li className="border-t border-white pt-4 pb-4">
-              <Link to="/cameras" className="cursor-pointer text-white">
-                Cameras
-              </Link>
-            </li>
-            <li className="border-t border-b border-white pt-4 pb-4">
-              <Link to="/all-products" className="cursor-pointer text-white">
-                All Products
-              </Link>
+            <li className="border-t border-b border-white pt-4 pb-4 flex flex-row justify-between items-center">
+              <div>
+                <Link to="/all-products" className="cursor-pointer text-white">
+                  All Products
+                </Link>
+              </div>
+              <div className="border-l pl-5 py-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-3 h-3 fill-current text-white"
+                >
+                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                </svg>
+              </div>
             </li>
             <li className="mt-2">
-              <Link to="/login" className="cursor-pointer text-white text-sm ">
+              <Link to="/login" className="cursor-pointer text-white text-sm">
                 Login
               </Link>
             </li>
