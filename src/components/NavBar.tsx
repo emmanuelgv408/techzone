@@ -9,119 +9,171 @@ const NavBar = () => {
   return (
     <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center ">
       <div className="text-xl">
-        <Link to="/" className="cursor-pointer text-white uppercase font-extrabold">
+        <Link
+          to="/"
+          className="cursor-pointer text-white uppercase font-extrabold"
+        >
           Techzone
         </Link>
       </div>
 
-
-
       <div className="hidden md:block">
-  <ul className="flex flex-wrap justify-center items-center gap-5 text-sm px-3">
-    <li className="min-w-[17%]">
-      <Link to="/laptops" className="cursor-pointer flex gap-1 text-white">
-        Laptops
-        <img src={assets.down_icon} alt="down" className=" w-5" />
-      </Link>
-    </li>
-    <li className="min-w-[17%]">
-      <Link to="/smartphones" className="cursor-pointer flex gap-1 text-white">
-        Smartphones
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[17%]">
-      <Link to="/wearables" className="cursor-pointer flex gap-1 text-white">
-        Wearables
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[17%]">
-      <Link to="/accessories" className="cursor-pointer flex gap-1 text-white">
-        Accessories
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[20%]">
-      <Link to="/gaming" className="cursor-pointer flex gap-1 text-white">
-        Gaming
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[17%]">
-      <Link to="/audio" className="cursor-pointer flex gap-1 text-white">
-        Audio
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[20%]">
-      <Link to="/cameras" className="cursor-pointer flex gap-1 text-white">
-        Cameras
-        <svg className="w-4 h-4 text-white">
-          <use xlinkHref={assets.down_icon}></use>
-        </svg>
-      </Link>
-    </li>
-    <li className="min-w-[17%]">
-      <Link to="/all-products" className="cursor-pointer flex gap-1 text-white">
-        All Products
-      </Link>
-    </li>
-  </ul>
-</div>
-
-
+        <ul className="flex flex-wrap justify-center items-center gap-5 text-sm px-3">
+          <li className="min-w-[17%]">
+            <Link to="/laptops" className="cursor-pointer flex gap-1 ">
+              Laptops
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[17%]">
+            <Link
+              to="/smartphones"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Smartphones
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[17%]">
+            <Link
+              to="/wearables"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Wearables
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[17%]">
+            <Link
+              to="/accessories"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Accessories
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[20%]">
+            <Link to="/gaming" className="cursor-pointer flex gap-1 text-white">
+              Gaming
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[17%]">
+            <Link to="/audio" className="cursor-pointer flex gap-1 text-white">
+              Audio
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[20%]">
+            <Link
+              to="/cameras"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              Cameras
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="w-4 h-4 fill-current text-white"
+              >
+                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+              </svg>
+            </Link>
+          </li>
+          <li className="min-w-[17%]">
+            <Link
+              to="/all-products"
+              className="cursor-pointer flex gap-1 text-white"
+            >
+              All Products
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       <div className="flex mr-3">
         <ul className="flex items-center gap-3  ">
           <li className="flex-shrink-0">
-            <img
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
               className="w-6 h-6 cursor-pointer fill-current text-white"
-              src={assets.search_icon}
-              alt="search"
               onClick={() => setSearchVisible(!searchVisible)}
-            />
+            >
+              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+            </svg>
           </li>
 
           {/* Visible on medium screens */}
           <li className="flex-shrink-0 hidden md:block">
             <Link to="/login">
-              <img
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
                 className="w-6 h-6 cursor-pointer fill-current text-white"
-                src={assets.user_icon}
-                alt="user"
-              />
+              >
+                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+              </svg>
             </Link>
           </li>
 
           <li className="flex-shrink-0 ">
             <Link to="/cart" className="cursor-pointer">
-              <img
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
                 className="w-6 h-6 fill-current text-white"
-                src={assets.cart_icon}
-                alt="cart"
-              />
+              >
+                <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+              </svg>
             </Link>
           </li>
 
           {/* Hidden on medium screens*/}
           <li className="flex-shrink-0 md:hidden">
-            <img
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
               className="w-6 h-6 cursor-pointer fill-current text-white"
-              src={assets.bars_icon}
-              alt="bars"
               onClick={() => setMenuVisible(!menuVisible)}
-            />
+            >
+              <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
+            </svg>
           </li>
         </ul>
       </div>
@@ -147,7 +199,7 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {menuVisible && (
         <div
-          className={`w-[80%] fixed top-0 right-0 bottom-0 z-10 bg-slate-600  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
+          className={`w-[90%] fixed top-0 right-0 bottom-0 z-10 bg-dark  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
             menuVisible ? "translate-x-0" : "translate-x-full"
           }`}
         >
