@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
-  const [mobileDropdown, setMobileDropdown] = useState<
-    Record<string, boolean>
-  >({
-    laptops: false,
-    smartphone: false,
-    wearables: false,
-    gaming: false,
-    audio: false,
-    camaras: false,
-  });
+  const [mobileDropdown, setMobileDropdown] = useState<Record<string, boolean>>(
+    {
+      laptops: false,
+      smartphones: false,
+      wearables: false,
+      gaming: false,
+      audio: false,
+      camaras: false,
+    }
+  );
 
   const toggleMobileDropdown = (category: keyof Record<string, boolean>) => {
     setMobileDropdown((prevState) => ({
@@ -22,9 +22,6 @@ const NavBar = () => {
       [category]: !prevState[category],
     }));
   };
-  
-
-  
 
   return (
     <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center ">
@@ -255,11 +252,23 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("laptops")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.laptops && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/apple/laptops">Apple</Link>
+                </li>
+                <li>
+                  <Link to="/brands/dell/laptops">Dell</Link>
+                </li>
+              </ul>
+            )}
+
             <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/smartphones" className="cursor-pointer text-white">
@@ -271,11 +280,22 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("smartphones")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.smartphones && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/apple/smartphones">Apple</Link>
+                </li>
+                <li>
+                  <Link to="/brands/samsung/smartphones">Samsung</Link>
+                </li>
+              </ul>
+            )}
             <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/wearables" className="cursor-pointer text-white">
@@ -287,11 +307,19 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("wearables")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.wearables && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/apple/wearables">Apple</Link>
+                </li>
+              </ul>
+            )}
             <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/gaming" className="cursor-pointer text-white">
@@ -303,11 +331,22 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("gaming")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.gaming && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/nintendo/gaming">Nintendo</Link>
+                </li>
+                <li>
+                  <Link to="/brands/sony/gaming">Sony</Link>
+                </li>
+              </ul>
+            )}
             <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/audio" className="cursor-pointer text-white">
@@ -319,11 +358,20 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("audio")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.audio && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/bose">Bose</Link>
+                </li>
+              </ul>
+            )}
+
             <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/cameras" className="cursor-pointer text-white">
@@ -335,28 +383,29 @@ const NavBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className="w-3 h-3 fill-current text-white"
+                  onClick={() => toggleMobileDropdown("cameras")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
               </div>
             </li>
+            {mobileDropdown.cameras && (
+              <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
+                <li>
+                  <Link to="/brands/canon">Canon</Link>
+                </li>
+              </ul>
+            )}
+
             <li className="border-t border-b border-white pt-4 pb-4 flex flex-row justify-between items-center">
               <div>
                 <Link to="/all-products" className="cursor-pointer text-white">
                   All Products
                 </Link>
               </div>
-              <div className="border-l pl-5 py-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
-                >
-                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                </svg>
-              </div>
+              
             </li>
-            <li className="mt-2">
+            <li className="mt-4 text-xs">
               <Link to="/login" className="cursor-pointer text-white text-sm">
                 Login
               </Link>
