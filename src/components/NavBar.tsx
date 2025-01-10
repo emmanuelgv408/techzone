@@ -24,7 +24,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center ">
+    <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center uppercase tracking-wider text-xs">
       <div className="text-xl">
         <Link
           to="/"
@@ -99,7 +99,7 @@ const NavBar = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="w-4 h-4 fill-current text-white"
+                className="w-4 h-4 fill-current text-white "
               >
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
@@ -214,12 +214,13 @@ const NavBar = () => {
       )}
 
       {/* Mobile Menu */}
+
       {menuVisible && (
         <div
-          className={`w-[90%] fixed top-0 right-0 bottom-0 z-10 bg-dark  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
-            menuVisible ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
+        className={`w-[90%] fixed top-0 right-0 bottom-0 z-10 bg-dark  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
+          menuVisible ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
           <div className="flex w-screen justify-end p-3 mt-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +252,9 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.laptops ? "rotate-180" : ""
+                  }`}
                   onClick={() => toggleMobileDropdown("laptops")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
@@ -279,7 +282,9 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.smartphones ? "rotate-180" : ""
+                  }`}
                   onClick={() => toggleMobileDropdown("smartphones")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
@@ -306,7 +311,9 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.wearables ? "rotate-180" : ""
+                  }`}
                   onClick={() => toggleMobileDropdown("wearables")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
@@ -330,7 +337,9 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.gaming ? "rotate-180" : ""
+                  }`}
                   onClick={() => toggleMobileDropdown("gaming")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
@@ -357,7 +366,9 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.audio ? "rotate-180" : ""
+                  }`}
                   onClick={() => toggleMobileDropdown("audio")}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
@@ -382,8 +393,10 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  className="w-3 h-3 fill-current text-white"
                   onClick={() => toggleMobileDropdown("cameras")}
+                  className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
+                    mobileDropdown.cameras ? "rotate-180" : ""
+                  }`}
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -403,7 +416,6 @@ const NavBar = () => {
                   All Products
                 </Link>
               </div>
-              
             </li>
             <li className="mt-4 text-xs">
               <Link to="/login" className="cursor-pointer text-white text-sm">
