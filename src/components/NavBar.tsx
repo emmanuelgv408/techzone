@@ -36,7 +36,7 @@ const NavBar = () => {
 
       <div className="hidden md:block">
         <ul className="flex flex-wrap justify-center items-center gap-5 text-sm px-3">
-          <li className="min-w-[17%]">
+          <li className="relative min-w-[17%] group">
             <Link to="/laptops" className="cursor-pointer flex gap-1 ">
               Laptops
               <svg
@@ -47,8 +47,18 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+
+            {/* Dropdown Desktop Menu */}
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/apple/laptops">Apple</Link>
+              </li>
+              <li>
+                <Link to="/brands/dell/laptops">Dell</Link>
+              </li>
+            </ul>
           </li>
-          <li className="min-w-[17%]">
+          <li className="relative min-w-[17%] group">
             <Link
               to="/smartphones"
               className="cursor-pointer flex gap-1 text-white"
@@ -62,8 +72,16 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/apple/smartphones">Apple</Link>
+              </li>
+              <li>
+                <Link to="/brands/samsung/smartphones">Samsung</Link>
+              </li>
+            </ul>
           </li>
-          <li className="min-w-[17%]">
+          <li className="relative min-w-[17%] group ">
             <Link
               to="/wearables"
               className="cursor-pointer flex gap-1 text-white"
@@ -77,23 +95,14 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/apple/wearables">Apple</Link>
+              </li>
+            </ul>
           </li>
-          <li className="min-w-[17%]">
-            <Link
-              to="/accessories"
-              className="cursor-pointer flex gap-1 text-white"
-            >
-              Accessories
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                className="w-4 h-4 fill-current text-white"
-              >
-                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-              </svg>
-            </Link>
-          </li>
-          <li className="min-w-[20%]">
+
+          <li className="relative min-w-[20%] group">
             <Link to="/gaming" className="cursor-pointer flex gap-1 text-white">
               Gaming
               <svg
@@ -104,8 +113,16 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/nintendo/gaming">Nintendo</Link>
+              </li>
+              <li>
+                <Link to="/brands/sony/gaming">Sony</Link>
+              </li>
+            </ul>
           </li>
-          <li className="min-w-[17%]">
+          <li className="relative min-w-[17%] group">
             <Link to="/audio" className="cursor-pointer flex gap-1 text-white">
               Audio
               <svg
@@ -116,8 +133,13 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/bose">Bose</Link>
+              </li>
+            </ul>
           </li>
-          <li className="min-w-[20%]">
+          <li className="relative min-w-[20%] group">
             <Link
               to="/cameras"
               className="cursor-pointer flex gap-1 text-white"
@@ -131,6 +153,11 @@ const NavBar = () => {
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </Link>
+            <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
+              <li>
+                <Link to="/brands/canon">Canon</Link>
+              </li>
+            </ul>
           </li>
           <li className="min-w-[17%]">
             <Link
@@ -217,10 +244,10 @@ const NavBar = () => {
 
       {menuVisible && (
         <div
-        className={`w-[90%] fixed top-0 right-0 bottom-0 z-10 bg-dark  flex flex-col items-center transform transition-transform duration-300 ease-in-out ${
-          menuVisible ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+          className={`w-[90%] fixed top-0 right-0 bottom-0 z-10 bg-dark  flex flex-col items-center transition-all  duration-300 transform ${
+            menuVisible ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
           <div className="flex w-screen justify-end p-3 mt-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
