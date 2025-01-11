@@ -42,7 +42,7 @@ const Related: React.FC<RelatedProps> = ({ category, product }) => {
   }
 
   return (
-    <div className="block md:hidden px-5 text-center mt-3">
+    <div className="block  px-5 text-center mt-3">
       <h1 className="uppercase text-xl">You may also like</h1>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
