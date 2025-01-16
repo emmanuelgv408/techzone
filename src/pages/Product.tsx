@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import Related from "../components/Related";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -17,6 +18,7 @@ interface Product {
 const Product = () => {
   const { products } = useContext(ShopContext);
   const { productId } = useParams<{ productId: string }>();
+  const { addToCart } = useContext(ShopContext);
   const product = products.find((p: Product) => p.id.toString() === productId);
 
   if (!product) return <div>Product not found</div>;
@@ -38,11 +40,14 @@ const Product = () => {
           <p className="text-sm mt-3 text-amber-600">${product.price}</p>
           <hr className="my-4 w-full border-gray-300" />
           <p className="text-center">{product.description}</p>
-          <button className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black">
-            Add To Cart
+          <button
+            className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black"
+            onClick={() => addToCart(product.id)}
+          >
+            <Link to="/cart"> Add To Cart</Link>
           </button>
           <button className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black">
-            Buy now
+            <Link to="/checkout"> Buy now</Link>
           </button>
         </div>
       </div>

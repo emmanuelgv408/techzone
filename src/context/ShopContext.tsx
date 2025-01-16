@@ -13,32 +13,30 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const currency = "$";
   const delivery_fee = 10;
 
-  // Function to add an item to the cart
   const addToCart = (itemId: string) => {
-    setCartItems((prevCart) => ({
-      ...prevCart,
-      [itemId]: (prevCart[itemId] || 0) + 1,
-    }));
+    const updatedCart = { ...cartItems };
+    updatedCart[itemId] = (updatedCart[itemId] || 0) + 1;
+    setCartItems(updatedCart);
   };
 
-  // Function to remove an item from the cart
   const removeFromCart = (itemId: string) => {
-    setCartItems((prevCart) => {
-      if (!prevCart[itemId]) return prevCart;
-
-      const updatedCart = { ...prevCart };
-      if (updatedCart[itemId] === 1) {
-        delete updatedCart[itemId];
-      } else {
-        updatedCart[itemId] -= 1;
-      }
-      return updatedCart;
-    });
+    const updatedCart = { ...cartItems };
+    if (updatedCart[itemId]) {
+      delete updatedCart[itemId]; // Remove the item from the cart
+      setCartItems(updatedCart);
+    }
   };
 
-  // Function to clear the cart
-  const clearCart = () => {
-    setCartItems({});
+  const decreaseQuantity = (itemId: string) => {
+    const updatedCart = { ...cartItems };
+    if (updatedCart[itemId]) {
+      if (updatedCart[itemId] === 1) {
+        delete updatedCart[itemId]; // Remove item if quantity is 0
+      } else {
+        updatedCart[itemId] -= 1; // Decrease quantity
+      }
+      setCartItems(updatedCart);
+    }
   };
 
   const value = {
@@ -48,14 +46,11 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     cartItems,
     addToCart,
     removeFromCart,
-    clearCart,
+    decreaseQuantity,
+    clearCart: () => setCartItems({}),
   };
 
-  return (
-    <ShopContext.Provider value={value}>
-      {children}
-    </ShopContext.Provider>
-  );
+  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
 
 export default ShopContextProvider;
