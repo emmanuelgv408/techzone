@@ -6,6 +6,18 @@ export const ShopContext = createContext<any>(null);
 interface ShopContextProviderProps {
   children: ReactNode;
 }
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+  description: string;
+  brand: string;
+  backgroundImage: string;
+}
+
+
 
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});

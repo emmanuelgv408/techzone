@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Product from "./Product";
 
 const Cart = () => {
   const { addToCart, removeFromCart, decreaseQuantity, cartItems, products } =
@@ -102,7 +103,7 @@ const Cart = () => {
               })}
             </div>
 
-            {/* Subtotal and Checkout */}
+          
             <div className="md:w-[40%] md:px-6 md:py-3 mt-6 md:mt-0 md:bg-slate-50 md:rounded-md md:shadow-md">
               <div className="flex justify-between items-center text-sm mt-3">
                 <p>Subtotal: </p>

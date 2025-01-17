@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <img
             src={product.image}
             alt="product"
-            className="w-full h-full object-cover"
+            className=" w-full h-full object-contain md:object-cover"
           />
         </div>
         <h1 className="text-center font-bold">{product.name}</h1>
