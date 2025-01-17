@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import Product from "./Product";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -46,68 +45,71 @@ const Cart = () => {
             Continue shopping
           </button>
 
-          {/*Layout */}
 
-          <div>
-            {cartArray.map(([itemId, quantity]) => {
-              const product = products.find(
-                (p: Product) => p.id.toString() === itemId
-              );
+          <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-12 mt-5">
+      
+            <div className="flex-1">
+              {cartArray.map(([itemId, quantity]) => {
+                const product = products.find(
+                  (p: Product) => p.id.toString() === itemId
+                );
 
-              if (!product) return null;
+                if (!product) return null;
 
-              return (
-                <div
-                  key={product.id}
-                  className="flex items-center justify-between p-4 border-b border-gray-200 "
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-20 h-20 object-cover rounded-md"
-                  />
+                return (
+                  <div
+                    key={product.id}
+                    className="flex items-center justify-between p-4 border-b border-gray-200"
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md"
+                    />
 
-                  <div className="flex-1 items-center px-4">
-                    <h2 className="">{product.name}</h2>
-                    <div className="flex items-center justify-between w-[90px] border border-gray-300 ">
+                    <div className="flex-1 px-4">
+                      <h2 className="text-lg">{product.name}</h2>
+                      <div className="flex items-center justify-between w-[90px] border border-gray-300">
+                        <button
+                          className="text-lg font-bold text-gray-700 hover:bg-gray-200 px-2"
+                          onClick={() => decreaseQuantity(itemId)}
+                        >
+                          -
+                        </button>
+
+                        <span className="text-sm text-gray-800">{quantity}</span>
+
+                        <button
+                          className="text-lg font-bold text-gray-700 hover:bg-gray-200 px-2"
+                          onClick={() => addToCart(itemId)}
+                        >
+                          +
+                        </button>
+                      </div>
                       <button
-                        className="text-lg font-bold text-gray-700 hover:bg-gray-200 px-2"
-                        onClick={() => decreaseQuantity(itemId)}
+                        className="text-[0.75rem] hover:underline mt-2"
+                        onClick={() => removeFromCart(itemId)}
                       >
-                        -
-                      </button>
-
-                      <span className="text-sm  text-gray-800">{quantity}</span>
-
-                      <button
-                        className="text-lg  text-gray-700 hover:bg-gray-200 px-2"
-                        onClick={() => addToCart(itemId)}
-                      >
-                        +
+                        Remove
                       </button>
                     </div>
-                    <button
-                      className="text-[0.75rem] hover:underline mt-2"
-                      onClick={() => removeFromCart(itemId)}
-                    >
-                      Remove
-                    </button>
-                  </div>
 
-                  <div>
-                    <p className="text-sm">
-                      ${Number(product.price).toFixed(2)}
-                    </p>
+                    <div>
+                      <p className="text-sm">${(Number(product.price) * quantity).toFixed(2)}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <div>
+                );
+              })}
+            </div>
+
+            {/* Subtotal and Checkout */}
+            <div className="md:w-[40%] md:px-6 md:py-3 mt-6 md:mt-0 md:bg-slate-50 md:rounded-md md:shadow-md">
               <div className="flex justify-between items-center text-sm mt-3">
-                <p>Subtotal: </p> <p>${total}</p>
+                <p>Subtotal: </p>
+                <p className="font-semibold">${total}</p>
               </div>
 
-              <button className="mt-3 border rounded bg-tan py-1.5 text-[0.75rem] tracking-widest uppercase text-white">
+              <button className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full">
                 <Link to="/checkout">Checkout</Link>
               </button>
             </div>
