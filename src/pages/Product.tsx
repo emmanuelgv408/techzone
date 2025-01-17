@@ -37,7 +37,7 @@ const Product = () => {
         <div className="px-6 py-6 flex flex-col items-center bg-[#fafafa] w-full max-w-[500px] shadow-md rounded-md">
           <p className="text-xs">{product.brand}</p>
           <h1 className="text-2xl">{product.name}</h1>
-          <p className="text-sm mt-3 text-amber-600">${product.price}</p>
+          <p className="text-sm mt-3 text-tan">${product.price}</p>
           <hr className="my-4 w-full border-gray-300" />
           <p className="text-center">{product.description}</p>
           <button
