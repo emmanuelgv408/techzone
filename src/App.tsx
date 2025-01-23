@@ -11,7 +11,7 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar";
 import './index.css'
-
+import Category from "./pages/Category";
 const App = () => {
   return (
     <div className=" ">
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/:category" element={<Category />} />
       </Routes>
     </div>
   );
