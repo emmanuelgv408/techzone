@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/:category" element={<Category />} />
+          <Route path="/:category/:brand" element={<Category />} />
         </Routes>
 
       <Footer /> 

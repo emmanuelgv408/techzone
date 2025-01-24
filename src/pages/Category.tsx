@@ -24,9 +24,11 @@ const categoryBackgrounds: { [key: string]: string } = {
 
 const CategoryPage = () => {
   const { category, brand } = useParams<{ category: string; brand?: string}>();
-  const filteredProducts = category
-    ? products.filter((product) => product.category.toLowerCase() === category)
-    : [];
+  const filteredProducts = products.filter(
+    (product) =>
+      product.category.toLowerCase() === category?.toLowerCase() &&
+      (!brand || product.brand.toLowerCase() === brand.toLowerCase())
+  );
 
   const backgroundImg = category ? categoryBackgrounds[category] : null;
 
