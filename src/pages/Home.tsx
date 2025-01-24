@@ -5,7 +5,7 @@ import ShopByCategory from '../components/ShopByCategory'
 
 const Home = () => {
   return (
-    <div className='h-screen'>
+    <div>
     <Hero/>
 <Featured/>
 <ShopByCategory/>

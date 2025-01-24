@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
 
 const NavBar = () => {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
@@ -15,6 +16,8 @@ const NavBar = () => {
       camaras: false,
     }
   );
+
+  const { cartCount } = useContext(ShopContext);
 
   const toggleMobileDropdown = (category: keyof Record<string, boolean>) => {
     setMobileDropdown((prevState) => ({
@@ -196,8 +199,14 @@ const NavBar = () => {
             </Link>
           </li>
 
-          <li className="flex-shrink-0 ">
+          <li className="flex-shrink-0 relative ">
             <Link to="/cart" className="cursor-pointer">
+              {cartCount > 0 && (
+                <div className="absolute left-3 bottom-3 border-2 border-white bg-tan text-white rounded-full w-5 h-5 inline-flex justify-center items-center text-sm">
+                  {cartCount}
+                </div>
+              )}
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 576 512"

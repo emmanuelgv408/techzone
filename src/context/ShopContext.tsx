@@ -25,6 +25,8 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const currency = "$";
   const delivery_fee = 10;
 
+  const cartCount = Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+
   const addToCart = (itemId: string) => {
     const updatedCart = { ...cartItems };
     updatedCart[itemId] = (updatedCart[itemId] || 0) + 1;
@@ -60,6 +62,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     removeFromCart,
     decreaseQuantity,
     clearCart: () => setCartItems({}),
+    cartCount
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
