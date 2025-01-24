@@ -9,6 +9,7 @@ import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar";
 import Category from "./pages/Category";
 import Footer from "./components/Footer";
+import AllProducts from "./components/AllProducts";
 
 import './index.css';
 
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/orders" element={<Orders />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/:category/:brand" element={<Category />} />
+          <Route path="/all-products" element={<AllProducts />} />
         </Routes>
 
       <Footer /> 

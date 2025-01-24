@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { Link } from 'react-router-dom'
 
 export const Hero = () => {
   return (
@@ -9,7 +10,8 @@ export const Hero = () => {
         <p className='uppercase text-lg tracking-wider mb-2'>Your One Stop for All Tech</p>
         <h1 className='text-5xl font-bold mb-4'>TechZone</h1>
         <button className='uppercase bg-black text-white py-2 px-6  hover:bg-cyan-600 transition duration-300'>
-          Shop All
+         
+          <Link to='/all-products'> Shop All</Link>
         </button>
       </div>
     </div>
