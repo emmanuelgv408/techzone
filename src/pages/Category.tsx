@@ -23,7 +23,7 @@ const categoryBackgrounds: { [key: string]: string } = {
 };
 
 const CategoryPage = () => {
-  const { category } = useParams<{ category: string }>();
+  const { category, brand } = useParams<{ category: string; brand?: string}>();
   const filteredProducts = category
     ? products.filter((product) => product.category.toLowerCase() === category)
     : [];

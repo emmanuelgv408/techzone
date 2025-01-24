@@ -54,10 +54,10 @@ const NavBar = () => {
             {/* Dropdown Desktop Menu */}
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/apple/laptops">Apple</Link>
+                <Link to="/laptops/apple">Apple</Link>
               </li>
               <li>
-                <Link to="/brands/dell/laptops">Dell</Link>
+                <Link to="/laptops/dell">Dell</Link>
               </li>
             </ul>
           </li>
@@ -77,10 +77,10 @@ const NavBar = () => {
             </Link>
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/apple/smartphones">Apple</Link>
+                <Link to="/smartphones/apple">Apple</Link>
               </li>
               <li>
-                <Link to="/brands/samsung/smartphones">Samsung</Link>
+                <Link to="/smartphones/samsung">Samsung</Link>
               </li>
             </ul>
           </li>
@@ -100,7 +100,7 @@ const NavBar = () => {
             </Link>
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/apple/wearables">Apple</Link>
+                <Link to="/wearables/apple">Apple</Link>
               </li>
             </ul>
           </li>
@@ -118,10 +118,10 @@ const NavBar = () => {
             </Link>
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/nintendo/gaming">Nintendo</Link>
+                <Link to="/gaming/nintendo">Nintendo</Link>
               </li>
               <li>
-                <Link to="/brands/sony/gaming">Sony</Link>
+                <Link to="/gaming/sony">Sony</Link>
               </li>
             </ul>
           </li>
@@ -138,7 +138,7 @@ const NavBar = () => {
             </Link>
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/bose">Bose</Link>
+                <Link to="/audio/bose">Bose</Link>
               </li>
             </ul>
           </li>
@@ -158,7 +158,7 @@ const NavBar = () => {
             </Link>
             <ul className="absolute hidden group-hover:block text-black bg-white w-[100%] py-3 px-2 space-y-3">
               <li>
-                <Link to="/brands/canon">Canon</Link>
+                <Link to="/cameras/canon">Canon</Link>
               </li>
             </ul>
           </li>
@@ -300,10 +300,10 @@ const NavBar = () => {
             {mobileDropdown.laptops && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/apple/laptops">Apple</Link>
+                  <Link to="/laptops/apple">Apple</Link>
                 </li>
                 <li>
-                  <Link to="/brands/dell/laptops">Dell</Link>
+                  <Link to="/laptops/dell">Dell</Link>
                 </li>
               </ul>
             )}
@@ -330,10 +330,10 @@ const NavBar = () => {
             {mobileDropdown.smartphones && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/apple/smartphones">Apple</Link>
+                  <Link to="/smartphones/apple">Apple</Link>
                 </li>
                 <li>
-                  <Link to="/brands/samsung/smartphones">Samsung</Link>
+                  <Link to="/smartphones/samsung">Samsung</Link>
                 </li>
               </ul>
             )}
@@ -359,7 +359,7 @@ const NavBar = () => {
             {mobileDropdown.wearables && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/apple/wearables">Apple</Link>
+                  <Link to="/wearables/apple">Apple</Link>
                 </li>
               </ul>
             )}
@@ -385,10 +385,10 @@ const NavBar = () => {
             {mobileDropdown.gaming && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/nintendo/gaming">Nintendo</Link>
+                  <Link to="/gaming/nintendo">Nintendo</Link>
                 </li>
                 <li>
-                  <Link to="/brands/sony/gaming">Sony</Link>
+                  <Link to="/gaming/sony">Sony</Link>
                 </li>
               </ul>
             )}
@@ -414,7 +414,7 @@ const NavBar = () => {
             {mobileDropdown.audio && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/bose">Bose</Link>
+                  <Link to="/audio/bose">Bose</Link>
                 </li>
               </ul>
             )}
@@ -441,7 +441,7 @@ const NavBar = () => {
             {mobileDropdown.cameras && (
               <ul className="text-xs pt-2 pb-6 flex flex-col justify-evenly gap-4">
                 <li>
-                  <Link to="/brands/canon">Canon</Link>
+                  <Link to="/cameras/canon">Canon</Link>
                 </li>
               </ul>
             )}
