@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
+import Product from "../pages/Product";
+import ProductCard from "./ProductCard";
 
 const NavBar = () => {
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
@@ -16,6 +18,11 @@ const NavBar = () => {
       camaras: false,
     }
   );
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
 
   const { cartCount } = useContext(ShopContext);
 
@@ -25,6 +32,11 @@ const NavBar = () => {
       [category]: !prevState[category],
     }));
   };
+
+  const { products } = useContext(ShopContext);
+  const filteredProducts = products.filter((product: Product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center uppercase tracking-wider text-xs">
@@ -233,19 +245,40 @@ const NavBar = () => {
 
       {/* Search Bar */}
       {searchVisible && (
-        <div className="absolute left-0 right-0 top-0 z-10 bg-slate-500 md:py-10 flex justify-around items-center py-2">
-          <input
-            type="text"
-            placeholder="Search"
-            className="text-left px-2 py-1 border border-b-1 border-black w-[80%]"
-            aria-label="Search"
-          />
-          <img
-            src={assets.x_icon}
-            alt="x"
-            className="mr-3 md:mr-20 cursor-pointer fill-current text-white"
-            onClick={() => setSearchVisible(!searchVisible)}
-          />
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex flex-col items-center">
+          <div className="w-full max-w-4xl flex flex-col items-center px-4 py-4 bg-slate-700">
+            <div className="w-full flex justify-between items-center">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                placeholder="Search"
+                className="text-left px-4 py-2 border border-black w-[80%] text-black"
+                aria-label="Search"
+              />
+              <img
+                src={assets.x_icon}
+                alt="x"
+                className="cursor-pointer fill-current text-white"
+                onClick={() => setSearchVisible(!searchVisible)}
+              />
+            </div>
+
+            {/* Product Cards */}
+            <div className="w-full mt-4 bg-white text-black overflow-auto px-4 py-4 rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map((product: Product) => (
+                    <ProductCard product={product} key={product.id} />
+                  ))
+                ) : (
+                  <p className="text-center text-gray-600">
+                    No products found.
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       )}
 
