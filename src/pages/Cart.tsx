@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Product from "./Product";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { addToCart, removeFromCart, decreaseQuantity, cartItems, products } =
@@ -29,6 +30,51 @@ const Cart = () => {
     addTotal();
   }, [cartItems, products]);
 
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
+    );
+
+    const body = {
+      products: cartArray.map(([itemId, quantity]) => ({
+        id: itemId,
+        quantity,
+      })),
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/payments/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            products: cartArray.map(([itemId, quantity]) => ({
+              id: itemId,
+              quantity,
+            })),
+          }),
+        }
+      );
+
+      const { sessionId } = await response.json();
+
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({
+          sessionId,
+        });
+
+        if (error) {
+          console.error("Stripe error:", error.message);
+        }
+      }
+    } catch (err) {
+      console.error("Payment error:", err);
+    }
+  };
+
   return (
     <div className="h-screen w-screen">
       {cartArray.length === 0 ? (
@@ -46,9 +92,7 @@ const Cart = () => {
             Continue shopping
           </button>
 
-
           <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-12 mt-5">
-      
             <div className="flex-1">
               {cartArray.map(([itemId, quantity]) => {
                 const product = products.find(
@@ -78,7 +122,9 @@ const Cart = () => {
                           -
                         </button>
 
-                        <span className="text-sm text-gray-800">{quantity}</span>
+                        <span className="text-sm text-gray-800">
+                          {quantity}
+                        </span>
 
                         <button
                           className="text-lg font-bold text-gray-700 hover:bg-gray-200 px-2"
@@ -96,22 +142,26 @@ const Cart = () => {
                     </div>
 
                     <div>
-                      <p className="text-sm">${(Number(product.price) * quantity).toFixed(2)}</p>
+                      <p className="text-sm">
+                        ${(Number(product.price) * quantity).toFixed(2)}
+                      </p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-          
             <div className="md:w-[40%] md:px-6 md:py-3 mt-6 md:mt-0 md:bg-slate-50 md:rounded-md md:shadow-md">
               <div className="flex justify-between items-center text-sm mt-3">
                 <p>Subtotal: </p>
                 <p className="font-semibold">${total}</p>
               </div>
 
-              <button className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full">
-                <Link to="/checkout">Checkout</Link>
+              <button
+                onClick={makePayment}
+                className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full"
+              >
+                Checkout
               </button>
             </div>
           </div>
