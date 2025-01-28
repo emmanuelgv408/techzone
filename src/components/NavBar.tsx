@@ -245,23 +245,27 @@ const NavBar = () => {
 
       {/* Search Bar */}
       {searchVisible && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex flex-col items-center">
-          <div className="w-full max-w-4xl flex flex-col items-center px-4 py-4 bg-slate-700">
-            <div className="w-full flex justify-between items-center">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                placeholder="Search"
-                className="text-left px-4 py-2 border border-black w-[80%] text-black"
-                aria-label="Search"
-              />
-              <img
-                src={assets.x_icon}
-                alt="x"
-                className="cursor-pointer fill-current text-white"
-                onClick={() => setSearchVisible(!searchVisible)}
-              />
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-md flex flex-col items-center">
+          <div className="w-full max-w-4xl flex flex-col items-center px-4  ">
+            <div className="bg-slate-400">
+              <div className=" w-full flex justify-between items-center  h-[60px] md:h-[110px]  ">
+                <div className="w-screen inline-flex  justify-around items-center  h-[100px]">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    placeholder="Search"
+                    className="text-left px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-[80%] h-[40px] text-black"
+                    aria-label="Search"
+                  />
+                  <img
+                    src={assets.x_icon}
+                    alt="x"
+                    className="cursor-pointer fill-current text-white w-[30px] h-[30px] "
+                    onClick={() => setSearchVisible(!searchVisible)}
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Product Cards */}

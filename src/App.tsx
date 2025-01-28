@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
-import PlaceOrder from "./pages/PlaceOrder";
+import  Checkout  from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar";
 import Category from "./pages/Category";
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/checkout" element={<Checkout/>} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/:category" element={<Category />} />
           <Route path="/:category/:brand" element={<Category />} />
