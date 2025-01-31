@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import Product from "./Product";
 import { loadStripe } from "@stripe/stripe-js";
 
@@ -19,7 +19,8 @@ const Cart = () => {
     cartArray.forEach(([itemId, quantity]) => {
       const product = products.find((p: Product) => p.id.toString() === itemId);
       if (product) {
-        totalAmount += Number(product.price) * quantity;
+        totalAmount += parseFloat(product.price) * quantity;
+
       }
     });
     const formattedTotal = totalAmount.toFixed(2);
@@ -36,26 +37,28 @@ const Cart = () => {
     );
 
     const body = {
-      products: cartArray.map(([itemId, quantity]) => ({
-        id: itemId,
-        quantity,
-      })),
+      products: cartArray.map(([itemId, quantity]) => {
+        const product = products.find((p: Product) => p.id.toString() === itemId.toString()); // Ensure product exists
+        return {
+          name: product?.name,
+          price: product?.price,
+          image: product?.image,
+          quantity,
+          
+        };
+      }),
     };
+    
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/payments/create-checkout-session",
+        "http://localhost:5001/api/payments/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            products: cartArray.map(([itemId, quantity]) => ({
-              id: itemId,
-              quantity,
-            })),
-          }),
+          body: JSON.stringify(body),
         }
       );
 
