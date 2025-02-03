@@ -20,10 +20,8 @@ import user_icon from './icons/user.svg';
 import x_icon from './icons/x.svg';
 import down_icon from './icons/down.svg';
 
-// Type for the assets object
 export type AssetKeys = 'heroImg' | 'bars_icon' | 'cart_icon' | 'categories_icon' | 'heart_icon' | 'search_icon' | 'user_icon' | 'x_icon' | 'down_icon';
 
-// Type for assets record
 export const assets: Record<AssetKeys, string> = {
     heroImg,
     bars_icon,
