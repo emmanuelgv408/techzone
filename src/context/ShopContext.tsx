@@ -1,7 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { products } from "../assets/assets";
-
-
+import axios from "axios";
 
 export const ShopContext = createContext<any>(null);
 
@@ -19,16 +18,28 @@ interface Product {
   backgroundImage: string;
 }
 
-
-
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});
-  const [userToken, setUserToken] = useState<string| null>(null);
+  const [user, setUser] = useState<string>("");
+
+  useEffect(() => {
+    if (!user) {
+      axios
+        .get("/auth/profile") 
+        .then((res) => {
+          setUser(res.data); 
+        })
+       
+    }
+  }, []);
 
   const currency = "$";
   const delivery_fee = 10;
 
-  const cartCount = Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+  const cartCount = Object.values(cartItems).reduce(
+    (total, quantity) => total + quantity,
+    0
+  );
 
   const addToCart = (itemId: string) => {
     const updatedCart = { ...cartItems };
@@ -66,8 +77,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     decreaseQuantity,
     clearCart: () => setCartItems({}),
     cartCount,
-    userToken,
-    setUserToken
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

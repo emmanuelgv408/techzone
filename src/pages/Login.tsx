@@ -9,7 +9,6 @@ const Login = () => {
     email: '',
     password: '',
   });
-  const {setUserToken} = useContext(ShopContext);
   const navigate = useNavigate();
 
  
@@ -29,7 +28,7 @@ const Login = () => {
         toast.error(res.data.error);  
       } else {
         toast.success('Login successful!');
-        setUserToken(res.data.token);
+        
         navigate('/');  
       }
     } catch (error) {

@@ -14,6 +14,7 @@ import axios from "axios";
 import './index.css';
 import Register from "./pages/Register";
 import { Toaster } from 'react-hot-toast'
+import {ShopContext} from './context/ShopContext'
 
 
 axios.defaults.baseURL = 'http://localhost:5001'
