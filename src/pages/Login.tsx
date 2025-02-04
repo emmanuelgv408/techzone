@@ -1,47 +1,55 @@
-
-import React, { useState } from 'react';
 import axios from 'axios';
+import { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
-
-const Login  = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
+  const {setUserToken} = useContext(ShopContext);
+  const navigate = useNavigate();
 
-  const [error, setError] = useState("");
+ 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const loginUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
-    axios.get('/')
+
+    const { email, password } = formData;
+
+    try {
+      const res = await axios.post('http://localhost:5001/auth/login', {
+        email,
+        password,
+      });
+
+      if (res.data.error) {
+        toast.error(res.data.error);  
+      } else {
+        toast.success('Login successful!');
+        setUserToken(res.data.token);
+        navigate('/');  
+      }
+    } catch (error) {
+      toast.error('Login failed. Please try again.');
+      console.error('Error during login:', error);
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-md"
-          />
+
+        <form onSubmit={loginUser} className="space-y-4">
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={formData.email}
-            onChange={handleChange}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="w-full p-2 border rounded-md"
           />
           <input
@@ -49,7 +57,7 @@ const Login  = () => {
             name="password"
             placeholder="Password"
             value={formData.password}
-            onChange={handleChange}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="w-full p-2 border rounded-md"
           />
           <button

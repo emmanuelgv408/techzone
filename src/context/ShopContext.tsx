@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useState } from "react";
 import { products } from "../assets/assets";
 
+
+
 export const ShopContext = createContext<any>(null);
 
 interface ShopContextProviderProps {
@@ -21,6 +23,7 @@ interface Product {
 
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});
+  const [userToken, setUserToken] = useState<string| null>(null);
 
   const currency = "$";
   const delivery_fee = 10;
@@ -62,7 +65,9 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     removeFromCart,
     decreaseQuantity,
     clearCart: () => setCartItems({}),
-    cartCount
+    cartCount,
+    userToken,
+    setUserToken
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

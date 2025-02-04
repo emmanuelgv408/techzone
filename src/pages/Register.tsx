@@ -17,7 +17,7 @@ const Register = () => {
     const { name, email, password } = formData;
 
     try {
-      const res = await axios.post("http://localhost:5001/register", {
+      const res = await axios.post("http://localhost:5001/auth/register", {
         name,
         email,
         password,
