@@ -66,6 +66,13 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
       setCartItems(updatedCart);
     }
   };
+  const logout = () => {
+   
+    setUser("");
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    localStorage.removeItem("token");
+    window.location.reload() 
+  };
 
   const value = {
     products,
@@ -77,6 +84,9 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     decreaseQuantity,
     clearCart: () => setCartItems({}),
     cartCount,
+    user,
+    setUser,
+    logout
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

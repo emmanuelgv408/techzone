@@ -7,6 +7,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    lastName: "",
     password: "",
   });
 
@@ -14,11 +15,12 @@ const Register = () => {
 
   const registerUser = async (e: FormEvent) => {
     e.preventDefault();
-    const { name, email, password } = formData;
+    const { name, lastName, email, password } = formData;
 
     try {
       const res = await axios.post("http://localhost:5001/auth/register", {
         name,
+        lastName,
         email,
         password,
       });
@@ -46,9 +48,17 @@ const Register = () => {
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="First Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
+          />
+           <input
+            type="text"
+            name="Last name"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
             className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <input

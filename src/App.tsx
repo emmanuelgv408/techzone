@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
@@ -21,6 +21,9 @@ axios.defaults.baseURL = 'http://localhost:5001'
 axios.defaults.withCredentials = true;
 
 const App = () => {
+
+
+ 
   return (
     <div className="" >
       <NavBar /> 

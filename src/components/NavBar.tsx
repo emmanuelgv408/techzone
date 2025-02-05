@@ -18,6 +18,8 @@ const NavBar = () => {
       camaras: false,
     }
   );
+  const { user, setUser, } = useContext(ShopContext);
+  const {logout} = useContext(ShopContext)
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +39,8 @@ const NavBar = () => {
   const filteredProducts = products.filter((product: Product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+
 
   return (
     <div className="relative z-50 flex justify-between w-screen md:px-10 py-4 px-3 md:py-8 bg-dark text-white items-center uppercase tracking-wider text-xs">
@@ -199,17 +203,33 @@ const NavBar = () => {
           </li>
 
           {/* Visible on medium screens */}
-          <li className="flex-shrink-0 hidden md:block">
-            <Link to="/login">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="w-6 h-6 cursor-pointer fill-current text-white"
-              >
-                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
-              </svg>
+
+          {!user && (
+            <li className="flex-shrink-0 hidden md:block">
+              <Link to="/login">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512"
+                  className="w-6 h-6 cursor-pointer fill-current text-white"
+                >
+                  <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                </svg>
+              </Link>
+            </li>
+          )}
+          {user && (
+               <Link to='/profile'>
+            <div className="border p-2 rounded-full border-tan text-tan">
+           
+              <h1>
+                {user.name.slice(0, 1)}
+                {user.lastName.slice(0, 1)}
+              </h1>
+          
+             
+            </div>
             </Link>
-          </li>
+          )}
 
           <li className="flex-shrink-0 relative ">
             <Link to="/cart" className="cursor-pointer">
@@ -490,11 +510,21 @@ const NavBar = () => {
                 </Link>
               </div>
             </li>
-            <li className="mt-4 text-xs">
+
+            {!(user) && (
               <Link to="/login" className="cursor-pointer text-white text-sm">
-                Login
-              </Link>
-            </li>
+               <li className="mt-4 text-xs">
+               
+                 Login
+           
+             </li>
+             </Link>
+            )}
+            {(user) && (
+              <li className="mt-4 text-xs hover:cursor-pointer" onClick={() => 
+            logout}>Logout</li>
+            )}
+           
           </ul>
         </div>
       )}
