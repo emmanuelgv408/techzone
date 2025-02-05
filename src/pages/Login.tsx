@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { ShopContext } from '../context/ShopContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,8 +9,6 @@ const Login = () => {
     password: '',
   });
   const navigate = useNavigate();
-
- 
 
   const loginUser = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,17 +36,18 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+      <div className="w-full max-w-md px-3 py-10 rounded-lg flex flex-col gap-3 bg-gray bg-opacity-50 backdrop-blur-lg">
+        <h2 className='uppercase tracking-wider text-3xl font-semibold text-center'>TechZone</h2>
+        <h2 className="text-xl font-semibold">Login</h2>
 
-        <form onSubmit={loginUser} className="space-y-4">
+        <form onSubmit={loginUser} className="flex flex-col gap-3">
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full p-2 border rounded-md"
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <input
             type="password"
@@ -57,15 +55,28 @@ const Login = () => {
             placeholder="Password"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className="w-full p-2 border rounded-md"
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            className="bg-tan hover:bg-tan/90 text-white py-2 rounded-md "
           >
-            Login
+            Continue
           </button>
         </form>
+
+        {/* Register Link */}
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-600">
+            Don't have an account?{' '}
+            <a
+              href="/register"
+              className="text-blue-500 hover:underline"
+            >
+              Register
+            </a>
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { FormEvent, ReactEventHandler, useState } from "react";
-import {toast} from 'react-hot-toast'
+import { FormEvent, useState } from "react";
+import { toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -10,7 +10,7 @@ const Register = () => {
     password: "",
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const registerUser = async (e: FormEvent) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const Register = () => {
         password,
       });
 
-      toast.success("Registration successful!"); 
+      toast.success("Registration successful!");
       navigate('/login');
     } catch (error: any) {
       console.error("Registration failed:", error);
@@ -34,25 +34,22 @@ const Register = () => {
         toast.error("Registration failed. Please try again.");
       }
     }
-};
-
-
-
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-4">Register</h2>
-     
-        <form onSubmit={registerUser} className="space-y-4">
+      <div className="w-full max-w-md px-3 py-10 rounded-lg flex flex-col gap-3 bg-gray bg-opacity-50 backdrop-blur-lg">
+        <h2 className="uppercase tracking-wider text-3xl font-semibold text-center">TechZone</h2>
+        <h2 className="text-xl font-semibold">Register</h2>
+
+        <form onSubmit={registerUser} className="flex flex-col gap-3">
           <input
             type="text"
-            name="username"
-            placeholder="Username"
+            name="name"
+            placeholder="Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-
-            className="w-full p-2 border rounded-md"
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <input
             type="email"
@@ -60,8 +57,7 @@ const Register = () => {
             placeholder="Email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-
-            className="w-full p-2 border rounded-md"
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <input
             type="password"
@@ -69,15 +65,28 @@ const Register = () => {
             placeholder="Password"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className="w-full p-2 border rounded-md"
+            className="border px-2 border-black/25 shadow-sm rounded placeholder-black"
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+            className="bg-tan hover:bg-tan/90 text-white py-2 rounded-md"
           >
             Register
           </button>
         </form>
+
+        {/* Login Link */}
+        <div className="text-center mt-4">
+          <span className="text-sm text-gray-600">
+            Already have an account?{' '}
+            <a
+              href="/login"
+              className="text-blue-500 hover:underline"
+            >
+              Login
+            </a>
+          </span>
+        </div>
       </div>
     </div>
   );
