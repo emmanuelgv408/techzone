@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { ShopContext } from '../context/ShopContext'; 
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import { toast } from 'react-toastify'; 
