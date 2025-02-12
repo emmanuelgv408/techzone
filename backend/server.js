@@ -26,6 +26,8 @@ app.use(express.urlencoded({extended: false}))
 
 app.use('/api/payments', require('./routes/paymentRoutes'));
 app.use('/auth', require('./routes/authRoutes'));
+app.use('/api', require('./routes/webhookRoutes'));
+
 
 
 const PORT = process.env.PORT || 5001;
