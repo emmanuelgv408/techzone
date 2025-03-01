@@ -103,14 +103,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     }
   };
 
-  const handleCheckout = () => {
-    if (!user) {
-      toast.error("Please log in to proceed with checkout.");
-      Navigate("/login"); 
-      return;
-    }
-    toast.success("Proceeding with checkout...");
-  };
+  
   
 
   const value = {
@@ -127,7 +120,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     setUser,
     logoutUser,
     loginUser,
-    handleCheckout
+
 
   };
 

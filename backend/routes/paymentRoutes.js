@@ -4,7 +4,7 @@ const { createCheckoutSession } = require("../controllers/paymentController");
 const {authenticateUser} = require("../controllers/authController")
 const router = express.Router();
 
-router.use(cors());  
+
 
 router.post("/create-checkout-session", authenticateUser, createCheckoutSession);
 

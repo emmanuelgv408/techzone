@@ -4,12 +4,7 @@ const cors = require('cors')
 const { handleStripeWebhook, getPastOrders} = require('../controllers/webhookController')
 
 
-router.use(
-   cors({
-    credentials: true,
-    origin: 'http://localhost:5173'
-   })
-)
+
 
 
 router.post('/webhook', express.raw({ type: 'application/json' }), handleStripeWebhook )

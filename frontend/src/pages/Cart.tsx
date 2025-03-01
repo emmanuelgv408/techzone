@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-hot-toast";
 import Product from "./Product";
 import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
-  const { addToCart, removeFromCart, decreaseQuantity, cartItems, products } =
+  const { addToCart, removeFromCart, decreaseQuantity, cartItems, products, user } =
     useContext(ShopContext);
   const Navigate = useNavigate();
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+ 
 
   const cartArray = Object.entries(cartItems) as [string, number][];
   const [total, setTotal] = useState<number>(0);
@@ -34,6 +34,11 @@ const Cart = () => {
   }, [cartItems, products]);
 
   const makePayment = async () => {
+    if (!user) {
+      toast.error("Please log in to proceed with checkout.");
+      Navigate("/login"); // Redirect to login page if user is not authenticated
+      return;
+    }
     const stripe = await loadStripe(
       "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
     );
@@ -61,6 +66,7 @@ const Cart = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(body),
+          credentials: "include",
         }
       );
 
