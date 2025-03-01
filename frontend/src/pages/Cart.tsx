@@ -10,6 +10,8 @@ const Cart = () => {
     useContext(ShopContext);
   const Navigate = useNavigate();
 
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
   const cartArray = Object.entries(cartItems) as [string, number][];
   const [total, setTotal] = useState<number>(0);
 

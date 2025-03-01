@@ -24,6 +24,7 @@ exports.handleStripeWebhook = async (req, res) => {
     case 'checkout.session.completed':
       const session = event.data.object;
       const userId = session.client_reference_id;
+      console.log('Stripe ID:' ,userId);
       console.log(session.line_items);
 
       const order = new Order({

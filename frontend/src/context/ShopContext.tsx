@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { products } from "../assets/assets";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext<any>(null);
 
@@ -13,6 +14,7 @@ interface ShopContextProviderProps {
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});
   const [user, setUser] = useState<string>("");
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -100,6 +102,15 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
       setCartItems(updatedCart);
     }
   };
+
+  const handleCheckout = () => {
+    if (!user) {
+      toast.error("Please log in to proceed with checkout.");
+      Navigate("/login"); 
+      return;
+    }
+    toast.success("Proceeding with checkout...");
+  };
   
 
   const value = {
@@ -115,7 +126,8 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     user,
     setUser,
     logoutUser,
-    loginUser
+    loginUser,
+    handleCheckout
 
   };
 
