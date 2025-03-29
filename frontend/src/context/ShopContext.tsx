@@ -14,7 +14,7 @@ interface ShopContextProviderProps {
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});
   const [user, setUser] = useState<string>("");
-  const Navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchUserProfile = async () => {

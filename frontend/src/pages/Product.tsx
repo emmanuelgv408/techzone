@@ -25,7 +25,6 @@ const Product = () => {
     <div className="w-screen flex flex-col items-center px-4 md:px-0">
   
       <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row md:h-screen md:items-center md:justify-center">
-        {/* Product Image */}
         <div className="md:w-1/2 h-auto flex justify-center items-center px-5 my-4 md:my-0">
           <img
             src={product.image}
@@ -34,7 +33,7 @@ const Product = () => {
           />
         </div>
 
-        <div className="md:w-1/2 px-6 py-6 flex flex-col items-center justify-center bg-[#fafafa] shadow-md rounded-md max-w-[550px] md:max-w-[500px] h-auto">
+        <div className="md:w-1/2 px-6 py-6 flex flex-col items-center justify-around bg-[#fafafa] shadow-md rounded-md max-w-[550px] md:max-w-[500px] h-auto">
           <p className="text-xs">{product.brand}</p>
           <h1 className="text-2xl">{product.name}</h1>
           <p className="text-sm mt-3 text-tan">${parseFloat(product.price).toFixed(2)}</p>

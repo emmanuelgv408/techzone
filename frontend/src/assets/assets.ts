@@ -1,4 +1,4 @@
-// Import your images (assets)
+
 
 
 import accesoriesCategory from './AccesoriesCategory.jpg';
@@ -147,5 +147,115 @@ export const products: Product[] = [
         description: "Full-frame mirrorless camera with exceptional image quality.",
         brand: "Canon",
         backgroundImage: cameraCategory
+    },
+    {
+        id: 11,
+        name: "Google Pixel 7 Pro",
+        category: "Smartphones",
+        price: "899.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743271608/googlepixel7pro_dszyo1.jpg",
+        description: "Google's flagship phone with top-tier camera and AI-powered features.",
+        brand: "Google",
+        backgroundImage: smartphoneCategory
+    },
+    {
+        id: 12,
+        name: "Razer DeathAdder V3 Pro",
+        category: "Accessories",
+        price: "149.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743271706/RazerV3Pro_mmyzxo.jpg",
+        description: "Ultra-lightweight gaming mouse with precision tracking.",
+        brand: "Razer",
+        backgroundImage: accesoriesCategory
+    },
+    {
+        id: 13,
+        name: "ASUS ROG Zephyrus G14",
+        category: "Laptops",
+        price: "1599.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743271907/AsusRog_vkr8vf.jpg",
+        description: "High-performance gaming laptop with AMD Ryzen and RTX graphics.",
+        brand: "ASUS",
+        backgroundImage: laptopCategory
+    },
+    {
+        id: 14,
+        name: "Samsung Galaxy Tab S8",
+        category: "Tablets",
+        price: "699.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272073/samsung_galaxy_tab_s8_y9bfcg.jpg",
+        description: "Powerful Android tablet with a stunning AMOLED display.",
+        brand: "Samsung",
+        backgroundImage: smartphoneCategory
+    },
+    {
+        id: 15,
+        name: "Apple iPad Pro 12.9",
+        category: "Tablets",
+        price: "1099.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272135/IpadPro12.9_yo88fe.jpg",
+        description: "A powerful tablet with an M2 chip and a gorgeous Liquid Retina display.",
+        brand: "Apple",
+        backgroundImage: smartphoneCategory
+    },
+    {
+        id: 16,
+        name: "Meta Quest 3",
+        category: "Gaming",
+        price: "499.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272196/metaquest3_rp8yub.jpg",
+        description: "Next-gen VR headset with high resolution and improved performance.",
+        brand: "Meta",
+        backgroundImage: gamingCategory
+    },
+    {
+        id: 17,
+        name: "SteelSeries Arctis Nova Pro",
+        category: "Headphones",
+        price: "349.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272371/NovaPro_fgbq0u.jpg",
+        description: "Premium gaming headset with 360° spatial audio and active noise cancellation.",
+        brand: "SteelSeries",
+        backgroundImage: headphoneCategory
+    },
+    {
+        id: 18,
+        name: "DJI Mini 3 Pro",
+        category: "Cameras",
+        price: "799.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272429/Mini2pro_h4ivpz.webp",
+        description: "Compact and powerful drone with 4K HDR video recording.",
+        brand: "DJI",
+        backgroundImage: cameraCategory
+    },
+    {
+        id: 19,
+        name: "HyperX Cloud II Wireless",
+        category: "Headphones",
+        price: "159.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272473/hyperxcloud_r0tcz1.jpg",
+        description: "Comfortable wireless gaming headset with immersive sound.",
+        brand: "HyperX",
+        backgroundImage: headphoneCategory
+    },
+    {
+        id: 20,
+        name: "LG C2 OLED 55-inch",
+        category: "Audio",
+        price: "1399.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743272473/hyperxcloud_r0tcz1.jpg",
+        description: "Stunning OLED TV with deep blacks and amazing color accuracy.",
+        brand: "LG",
+        backgroundImage: audioCategory
+    }
+    ,    {
+        id: 21,
+        name: "Apple iPhone 15 Pro Max",
+        category: "Smartphones",
+        price: "1199.99",
+        image: "https://res.cloudinary.com/dliqgqmbr/image/upload/v1743273452/iphone15pro_oqenv7.jpg",
+        description: "Apple's most advanced iPhone with a titanium design and A17 Pro chip.",
+        brand: "Apple",
+        backgroundImage: smartphoneCategory
     }
 ];
