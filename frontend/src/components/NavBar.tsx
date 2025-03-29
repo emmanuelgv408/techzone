@@ -319,7 +319,7 @@ const NavBar = () => {
             menuVisible ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex w-screen justify-end p-3 mt-3">
+          <div className="flex w-screen justify-end p-3 mt-3" >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -340,20 +340,20 @@ const NavBar = () => {
           </div>
 
           <ul className="text-white mt-10 w-[80%] text-sm">
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center"onClick={() => toggleMobileDropdown("laptops")}>
               <div>
                 <Link to="/laptops" className="cursor-pointer text-white">
                   Laptops
                 </Link>
               </div>
-              <div className="border-l pl-5 py-2">
+              <div className="border-l pl-5 py-2" >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.laptops ? "rotate-180" : ""
                   }`}
-                  onClick={() => toggleMobileDropdown("laptops")}
+                  
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -370,7 +370,7 @@ const NavBar = () => {
               </ul>
             )}
 
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center"  onClick={() => toggleMobileDropdown("smartphones")}>
               <div>
                 <Link to="/smartphones" className="cursor-pointer text-white">
                   Smartphones
@@ -383,7 +383,7 @@ const NavBar = () => {
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.smartphones ? "rotate-180" : ""
                   }`}
-                  onClick={() => toggleMobileDropdown("smartphones")}
+                 
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -399,7 +399,9 @@ const NavBar = () => {
                 </li>
               </ul>
             )}
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center"onClick={() => toggleMobileDropdown("wearables")} >
+            
+            
               <div>
                 <Link to="/wearables" className="cursor-pointer text-white">
                   Wearables
@@ -412,7 +414,7 @@ const NavBar = () => {
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.wearables ? "rotate-180" : ""
                   }`}
-                  onClick={() => toggleMobileDropdown("wearables")}
+                
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -425,7 +427,7 @@ const NavBar = () => {
                 </li>
               </ul>
             )}
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center" onClick={() => toggleMobileDropdown("gaming")}>
               <div>
                 <Link to="/gaming" className="cursor-pointer text-white">
                   Gaming
@@ -438,7 +440,7 @@ const NavBar = () => {
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.gaming ? "rotate-180" : ""
                   }`}
-                  onClick={() => toggleMobileDropdown("gaming")}
+                 
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -454,7 +456,7 @@ const NavBar = () => {
                 </li>
               </ul>
             )}
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center"onClick={() => toggleMobileDropdown("audio")}>
               <div>
                 <Link to="/audio" className="cursor-pointer text-white">
                   Audio
@@ -467,7 +469,7 @@ const NavBar = () => {
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.audio ? "rotate-180" : ""
                   }`}
-                  onClick={() => toggleMobileDropdown("audio")}
+                  
                 >
                   <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                 </svg>
@@ -481,7 +483,7 @@ const NavBar = () => {
               </ul>
             )}
 
-            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center">
+            <li className="border-t border-white pt-4 pb-4 flex flex-row justify-between items-center"   onClick={() => toggleMobileDropdown("cameras")}>
               <div>
                 <Link to="/cameras" className="cursor-pointer text-white">
                   Cameras
@@ -491,7 +493,7 @@ const NavBar = () => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
-                  onClick={() => toggleMobileDropdown("cameras")}
+               
                   className={`w-3 h-3 fill-current text-white transition-transform duration-300 ${
                     mobileDropdown.cameras ? "rotate-180" : ""
                   }`}
