@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { ShopContext } from "../context/ShopContext";
+import { loadStripe } from "@stripe/stripe-js";
 import Related from "../components/Related";
+
 
 interface Product {
   id: number;
@@ -14,16 +17,68 @@ interface Product {
   backgroundImage: string;
 }
 
+const stripePromise = loadStripe(
+  "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
+); 
+
 const Product = () => {
-  const { products, addToCart } = useContext(ShopContext);
+  const { products, addToCart, user,cartItems } = useContext(ShopContext);
   const { productId } = useParams<{ productId: string }>();
   const product = products.find((p: Product) => p.id.toString() === productId);
+  const navigate = useNavigate();
+  const cartArray = Object.entries(cartItems) as [string, number][];
+
 
   if (!product) return <div>Product not found</div>;
 
+  const makePayment = async () => {
+    if (!user) {
+      toast.error("Please log in to proceed with checkout.");
+      navigate("/login"); 
+      return;
+    }
+
+    const stripe = await stripePromise;
+
+    const body = {
+      products: [
+        {
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          quantity: 1, 
+        },
+      ],
+    };
+
+    try {
+      const response = await fetch("http://localhost:5001/api/payments/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        credentials: "include",
+      });
+
+      const { sessionId } = await response.json();
+
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({
+          sessionId,
+        });
+
+        if (error) {
+          console.error("Stripe error:", error.message);
+        }
+      }
+    } catch (err) {
+      console.error("Payment error:", err);
+    }
+  };
+
   return (
     <div className="w-screen flex flex-col items-center px-4 md:px-0">
-  
       <div className="w-full max-w-screen-xl mx-auto flex flex-col md:flex-row md:h-screen md:items-center md:justify-center">
         <div className="md:w-1/2 h-auto flex justify-center items-center px-5 my-4 md:my-0">
           <img
@@ -46,16 +101,15 @@ const Product = () => {
           >
             Add To Cart
           </Link>
-          <Link
-            to="/checkout"
+          <button
             className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black text-center"
+            onClick={makePayment} 
           >
             Buy Now
-          </Link>
+          </button>
         </div>
       </div>
 
-    
       <div className="w-full max-w-screen-xl mx-auto mt-10 px-4">
         <Related category={product.category} product={product} />
       </div>
