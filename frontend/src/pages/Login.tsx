@@ -5,18 +5,18 @@ import { ShopContext } from '../context/ShopContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: 'staysi6@gmail.com',
+    password: '1234567',
   });
   const navigate = useNavigate();
   const {loginUser} = useContext(ShopContext)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevents page refresh
+    e.preventDefault(); 
 
     const success = await loginUser(formData.email, formData.password);
     if (success) {
-      navigate('/'); // Redirect user after successful login
+      navigate('/'); 
     }
   };
 
