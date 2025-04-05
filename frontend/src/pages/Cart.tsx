@@ -59,7 +59,7 @@ const Cart = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/payments/create-checkout-session",
+        "techzone-backend-eklh.onrender.com",
         {
           method: "POST",
           headers: {

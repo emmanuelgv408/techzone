@@ -44,7 +44,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const loginUser = async (email: string, password: string) => {
     try {
       const res = await axios.post(
-        "http://localhost:5001/auth/login",
+        "techzone-backend-eklh.onrender.com/auth/login",
         { email, password },
         { withCredentials: true }
       );

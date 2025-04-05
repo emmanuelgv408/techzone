@@ -18,7 +18,7 @@ const Register = () => {
     const { name, lastName, email, password } = formData;
 
     try {
-      await axios.post("http://localhost:5001/auth/register", {
+      await axios.post("techzone-backend-eklh.onrender.com/auth/register", {
         name,
         lastName,
         email,
