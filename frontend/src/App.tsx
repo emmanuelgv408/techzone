@@ -18,7 +18,7 @@ import Profile from "./pages/Profile";
 import SuccessPage from "./pages/SuccessPage";
 import CancelPage from "./pages/CancelPage";
 
-axios.defaults.baseURL = "techzone-backend-eklh.onrender.com";
+axios.defaults.baseURL = "https://techzone-backend-eklh.onrender.com";
 axios.defaults.withCredentials = true;
 
 const App = () => {

@@ -51,7 +51,7 @@ const Product = () => {
     };
 
     try {
-      const response = await fetch("techzone-backend-eklh.onrender.com/api/payments/create-checkout-session", {
+      const response = await fetch("https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

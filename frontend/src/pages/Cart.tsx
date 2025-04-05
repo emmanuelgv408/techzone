@@ -59,7 +59,7 @@ const Cart = () => {
 
     try {
       const response = await fetch(
-        "techzone-backend-eklh.onrender.com",
+        "https://techzone-backend-eklh.onrender.com",
         {
           method: "POST",
           headers: {
