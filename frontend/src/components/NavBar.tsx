@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
@@ -18,7 +18,7 @@ const NavBar = () => {
       camaras: false,
     }
   );
-  const { user, setUser, } = useContext(ShopContext);
+  const { user,  } = useContext(ShopContext);
  
   const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -29,9 +29,7 @@ const NavBar = () => {
   const { cartCount, } = useContext(ShopContext);
   const {logoutUser} = useContext(ShopContext);
 
-  const logout = () => {
-    setUser('');
-  }
+
 
   const toggleMobileDropdown = (category: keyof Record<string, boolean>) => {
     setMobileDropdown((prevState) => ({

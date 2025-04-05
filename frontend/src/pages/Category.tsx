@@ -1,4 +1,4 @@
-import React from "react";
+
 import { products } from "../assets/assets";
 import { useParams } from "react-router-dom";
 import accessoriesCategory from "../assets/AccesoriesCategory.jpg";

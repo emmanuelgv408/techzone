@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import accessoriesCategory from '../assets/AccesoriesCategory.jpg';
 import audioCategory from '../assets/AudioCategory.jpg';

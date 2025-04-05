@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { ShopContext } from "../context/ShopContext";
@@ -22,12 +22,11 @@ const stripePromise = loadStripe(
 ); 
 
 const Product = () => {
-  const { products, addToCart, user,cartItems } = useContext(ShopContext);
+  const { products, addToCart, user, } = useContext(ShopContext);
   const { productId } = useParams<{ productId: string }>();
   const product = products.find((p: Product) => p.id.toString() === productId);
   const navigate = useNavigate();
-  const cartArray = Object.entries(cartItems) as [string, number][];
-
+ 
 
   if (!product) return <div>Product not found</div>;
 
