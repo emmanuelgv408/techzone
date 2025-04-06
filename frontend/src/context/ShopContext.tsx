@@ -20,10 +20,10 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     const fetchUserProfile = async () => {
       try {
         const res = await axios.get("/auth/profile", { withCredentials: true });
-        setUser(res.data); // Store full user object
+        setUser(res.data); 
       } catch (error) {
         console.error("Failed to fetch profile:", error);
-        setUser(''); // Ensure state resets if request fails
+        setUser(''); 
       }
     };
 
