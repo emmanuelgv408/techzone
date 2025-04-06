@@ -16,27 +16,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-// List of allowed origins
-const allowedOrigins = [
-  "https://techzone-eight.vercel.app",
-  "https://techzone-git-main-emmanuels-projects-4cf8021e.vercel.app"
-];
 
-// CORS configuration
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.includes(origin) || !origin) {  // Allow requests with no origin (like Postman)
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "https://techzone-eight.vercel.app", 
+    credentials: true,  
+    methods: ["GET", "POST", "PUT", "DELETE"],  
+    allowedHeaders: ["Content-Type", "Authorization"], 
   })
 );
+
 
 app.use((req, res, next) => {
   console.log("Incoming Request:", req.method, req.url);
@@ -44,9 +33,11 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/webhookRoutes")); 
+
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
