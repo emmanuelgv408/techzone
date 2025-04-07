@@ -101,6 +101,7 @@ const Product = () => {
             Add To Cart
           </Link>
           <button
+          type="button"
             className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black text-center"
             onClick={makePayment} 
           >

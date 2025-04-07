@@ -169,6 +169,7 @@ const Cart = () => {
               </div>
 
               <button
+                type="button"
                 onClick={makePayment}
                 className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full"
               >
