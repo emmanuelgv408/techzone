@@ -11,7 +11,7 @@ mongoose
 
 const app = express();
 
-// Middleware to parse incoming requests
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

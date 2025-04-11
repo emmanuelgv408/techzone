@@ -36,7 +36,7 @@ const Cart = () => {
   const makePayment = async () => {
     if (!user) {
       toast.error("Please log in to proceed with checkout.");
-      Navigate("/login"); // Redirect to login page if user is not authenticated
+      Navigate("/login");
       return;
     }
     const stripe = await loadStripe(
