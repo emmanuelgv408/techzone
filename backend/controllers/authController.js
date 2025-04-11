@@ -108,23 +108,26 @@ const logoutUser = (req, res) => {
 };
 
 const getProfile = (req, res) => {
-  const { token } = req.cookies;
+  console.log("🔥 Hitting /auth/profile route");
   console.log("Incoming cookies:", req.cookies);
 
+  const { token } = req.cookies;
 
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
       if (err) {
+        console.log("Token verification failed:", err);
         return res.status(403).json({ error: 'Invalid token' });
       }
-      res.json(user); 
-      console.log("Profile route hit. Cookies:", req.cookies);
-
+      console.log("✅ Token verified. User:", user);
+      res.json(user);
     });
   } else {
+    console.log("❌ No token found in cookies");
     res.status(401).json({ error: 'No token provided' }); 
   }
 };
+
 
 
 
