@@ -109,6 +109,8 @@ const logoutUser = (req, res) => {
 
 const getProfile = (req, res) => {
   const { token } = req.cookies;
+  console.log("Incoming cookies:", req.cookies);
+
 
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
