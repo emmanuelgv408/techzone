@@ -16,15 +16,20 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-
 app.use(
   cors({
-    origin: "https://techzone-eight.vercel.app", 
-    credentials: true,  
-    methods: ["GET", "POST", "PUT", "DELETE"],  
+    origin: "https://techzone-eight.vercel.app",
+    credentials: true, 
+    methods: ["GET", "POST", "PUT", "DELETE"], 
     allowedHeaders: ["Content-Type", "Authorization"], 
   })
 );
+
+
+app.options("*", cors({
+  origin: "https://techzone-eight.vercel.app",
+  credentials: true, 
+}));
 
 
 app.use((req, res, next) => {
@@ -33,11 +38,9 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use("/api/payments", require("./routes/paymentRoutes"));
 app.use("/auth", require("./routes/authRoutes"));
-app.use("/api", require("./routes/webhookRoutes")); 
-
+app.use("/api", require("./routes/webhookRoutes"));
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
