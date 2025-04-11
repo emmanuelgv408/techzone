@@ -116,6 +116,8 @@ const getProfile = (req, res) => {
         return res.status(403).json({ error: 'Invalid token' });
       }
       res.json(user); 
+      console.log("Profile route hit. Cookies:", req.cookies);
+
     });
   } else {
     res.status(401).json({ error: 'No token provided' }); 
