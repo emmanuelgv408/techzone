@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { ShopContext } from "../context/ShopContext";
 import { loadStripe } from "@stripe/stripe-js";
 import Related from "../components/Related";
-import { FaSpinner } from "react-icons/fa"; 
+import { FaSpinner } from "react-icons/fa";
 
 interface Product {
   id: number;
@@ -28,7 +28,7 @@ const Product = () => {
   const navigate = useNavigate();
 
   const [loadingAddToCart, setLoadingAddToCart] = useState(false);
-  const [loadingBuyNow, setLoadingBuyNow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (!product) return <div>Product not found</div>;
 
@@ -39,7 +39,7 @@ const Product = () => {
       return;
     }
 
-    setLoadingBuyNow(true); 
+    setIsLoading(true);
 
     const stripe = await loadStripe(
       "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
@@ -88,14 +88,14 @@ const Product = () => {
     } catch (err) {
       console.error("Payment error:", err);
     } finally {
-      setLoadingBuyNow(false); 
+      setIsLoading(false);
     }
   };
 
   const handleAddToCart = () => {
-    setLoadingAddToCart(true); 
+    setLoadingAddToCart(true);
     addToCart(product.id);
-    setLoadingAddToCart(false); 
+    setLoadingAddToCart(false);
   };
 
   return (
@@ -112,7 +112,9 @@ const Product = () => {
         <div className="md:w-1/2 px-6 py-6 flex flex-col items-center justify-around bg-[#fafafa] shadow-md rounded-md max-w-[550px] md:max-w-[500px] h-auto">
           <p className="text-xs">{product.brand}</p>
           <h1 className="text-2xl">{product.name}</h1>
-          <p className="text-sm mt-3 text-tan">${parseFloat(product.price).toFixed(2)}</p>
+          <p className="text-sm mt-3 text-tan">
+            ${parseFloat(product.price).toFixed(2)}
+          </p>
           <hr className="my-4 w-full border-gray-300" />
           <p className="text-center">{product.description}</p>
           <Link
@@ -128,11 +130,12 @@ const Product = () => {
           </Link>
           <button
             type="button"
-            className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black text-center"
             onClick={makePayment}
+            className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full flex items-center justify-center"
+            disabled={isLoading}
           >
-            {loadingBuyNow ? (
-              <FaSpinner className="animate-spin mr-2"  />
+            {isLoading ? (
+              <FaSpinner className="animate-spin mr-2" />
             ) : (
               "Buy Now"
             )}

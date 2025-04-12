@@ -4,16 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Product from "./Product";
 import { loadStripe } from "@stripe/stripe-js";
-import { FaSpinner } from "react-icons/fa"; 
+import { FaSpinner } from "react-icons/fa";
 
 const Cart = () => {
-  const { addToCart, removeFromCart, decreaseQuantity, cartItems, products, user } =
-    useContext(ShopContext);
+  const {
+    addToCart,
+    removeFromCart,
+    decreaseQuantity,
+    cartItems,
+    products,
+    user,
+  } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const cartArray = Object.entries(cartItems) as [string, number][];
   const [total, setTotal] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const addTotal = () => {
     let totalAmount = 0;
@@ -58,7 +64,7 @@ const Cart = () => {
     };
 
     try {
-      setIsLoading(true); 
+      setIsLoading(true);
 
       const token = localStorage.getItem("authToken");
 
@@ -91,7 +97,7 @@ const Cart = () => {
     } catch (err) {
       console.error("Payment error:", err);
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
@@ -180,8 +186,8 @@ const Cart = () => {
               <button
                 type="button"
                 onClick={makePayment}
-                className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full"
-                disabled={isLoading} 
+                className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full flex items-center justify-center"
+                disabled={isLoading}
               >
                 {isLoading ? (
                   <FaSpinner className="animate-spin mr-2" />
