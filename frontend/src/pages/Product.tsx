@@ -33,40 +33,52 @@ const Product = () => {
   const makePayment = async () => {
     if (!user) {
       toast.error("Please log in to proceed with checkout.");
-      navigate("/login"); 
+      navigate("/login");
       return;
     }
-
-    const stripe = await stripePromise;
-
+  
+    const stripe = await loadStripe(
+      "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
+    );
+  
     const body = {
       products: [
         {
           name: product.name,
           price: product.price,
           image: product.image,
-          quantity: 1, 
+          quantity: 1,
         },
       ],
     };
-
+  
     try {
-      const response = await fetch("https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-        credentials: "include",
-      });
-
+ 
+      const token = localStorage.getItem("authToken");
+  
+      if (!token) {
+        toast.error("Authentication token missing. Please log in again.");
+        navigate("/login");
+        return;
+      }
+  
+      const response = await fetch(
+        "https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+       
+          body: JSON.stringify(body),
+        }
+      );
+  
       const { sessionId } = await response.json();
-
+  
       if (stripe) {
-        const { error } = await stripe.redirectToCheckout({
-          sessionId,
-        });
-
+        const { error } = await stripe.redirectToCheckout({ sessionId });
         if (error) {
           console.error("Stripe error:", error.message);
         }
@@ -75,6 +87,7 @@ const Product = () => {
       console.error("Payment error:", err);
     }
   };
+  
 
   return (
     <div className="w-screen flex flex-col items-center px-4 md:px-0">

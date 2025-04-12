@@ -33,50 +33,61 @@ const Cart = () => {
     addTotal();
   }, [cartItems, products]);
 
+  
+  
   const makePayment = async () => {
     if (!user) {
       toast.error("Please log in to proceed with checkout.");
       Navigate("/login");
       return;
     }
+  
     const stripe = await loadStripe(
       "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
     );
-
+  
     const body = {
       products: cartArray.map(([itemId, quantity]) => {
-        const product = products.find((p: Product) => p.id.toString() === itemId.toString()); // Ensure product exists
+        const product = products.find(
+          (p: Product) => p.id.toString() === itemId.toString()
+        ); 
         return {
           name: product?.name,
           price: product?.price,
           image: product?.image,
           quantity,
-          
         };
       }),
     };
-    
-
+  
     try {
+
+      const token = localStorage.getItem("authToken");
+  
+      if (!token) {
+        toast.error("Authentication token missing. Please log in again.");
+        Navigate("/login");
+        return;
+      }
+  
       const response = await fetch(
         "https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            // Include the token here:
+            Authorization: `Bearer ${token}`,
           },
+          // credentials: "include" is no longer necessary since we are not using cookies:
           body: JSON.stringify(body),
-          credentials: "include",
         }
       );
-
+  
       const { sessionId } = await response.json();
-
+  
       if (stripe) {
-        const { error } = await stripe.redirectToCheckout({
-          sessionId,
-        });
-
+        const { error } = await stripe.redirectToCheckout({ sessionId });
         if (error) {
           console.error("Stripe error:", error.message);
         }
@@ -85,6 +96,8 @@ const Cart = () => {
       console.error("Payment error:", err);
     }
   };
+  
+  
 
   return (
     <div className="h-screen w-screen">
