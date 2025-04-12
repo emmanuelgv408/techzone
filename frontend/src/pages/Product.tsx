@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { ShopContext } from "../context/ShopContext";
 import { loadStripe } from "@stripe/stripe-js";
 import Related from "../components/Related";
-
+import { FaSpinner } from "react-icons/fa"; 
 
 interface Product {
   id: number;
@@ -19,14 +19,16 @@ interface Product {
 
 const stripePromise = loadStripe(
   "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
-); 
+);
 
 const Product = () => {
-  const { products, addToCart, user, } = useContext(ShopContext);
+  const { products, addToCart, user } = useContext(ShopContext);
   const { productId } = useParams<{ productId: string }>();
   const product = products.find((p: Product) => p.id.toString() === productId);
   const navigate = useNavigate();
- 
+
+  const [loadingAddToCart, setLoadingAddToCart] = useState(false);
+  const [loadingBuyNow, setLoadingBuyNow] = useState(false);
 
   if (!product) return <div>Product not found</div>;
 
@@ -36,11 +38,13 @@ const Product = () => {
       navigate("/login");
       return;
     }
-  
+
+    setLoadingBuyNow(true); 
+
     const stripe = await loadStripe(
       "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
     );
-  
+
     const body = {
       products: [
         {
@@ -51,17 +55,16 @@ const Product = () => {
         },
       ],
     };
-  
+
     try {
- 
       const token = localStorage.getItem("authToken");
-  
+
       if (!token) {
         toast.error("Authentication token missing. Please log in again.");
         navigate("/login");
         return;
       }
-  
+
       const response = await fetch(
         "https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session",
         {
@@ -70,13 +73,12 @@ const Product = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-       
           body: JSON.stringify(body),
         }
       );
-  
+
       const { sessionId } = await response.json();
-  
+
       if (stripe) {
         const { error } = await stripe.redirectToCheckout({ sessionId });
         if (error) {
@@ -85,9 +87,16 @@ const Product = () => {
       }
     } catch (err) {
       console.error("Payment error:", err);
+    } finally {
+      setLoadingBuyNow(false); 
     }
   };
-  
+
+  const handleAddToCart = () => {
+    setLoadingAddToCart(true); 
+    addToCart(product.id);
+    setLoadingAddToCart(false); 
+  };
 
   return (
     <div className="w-screen flex flex-col items-center px-4 md:px-0">
@@ -109,16 +118,24 @@ const Product = () => {
           <Link
             to="/cart"
             className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black text-center"
-            onClick={() => addToCart(product.id)}
+            onClick={handleAddToCart}
           >
-            Add To Cart
+            {loadingAddToCart ? (
+              <FaSpinner className="animate-spin" size={20} color="#fff" />
+            ) : (
+              "Add To Cart"
+            )}
           </Link>
           <button
-          type="button"
+            type="button"
             className="mt-4 w-60 uppercase border px-20 py-2.5 text-[0.6rem] tracking-wider font-semibold hover:text-white hover:bg-black text-center"
-            onClick={makePayment} 
+            onClick={makePayment}
           >
-            Buy Now
+            {loadingBuyNow ? (
+              <FaSpinner className="animate-spin" size={20} color="#fff" />
+            ) : (
+              "Buy Now"
+            )}
           </button>
         </div>
       </div>

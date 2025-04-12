@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Product from "./Product";
 import { loadStripe } from "@stripe/stripe-js";
+import { FaSpinner } from "react-icons/fa"; 
 
 const Cart = () => {
   const { addToCart, removeFromCart, decreaseQuantity, cartItems, products, user } =
     useContext(ShopContext);
-  const Navigate = useNavigate();
-
- 
+  const navigate = useNavigate();
 
   const cartArray = Object.entries(cartItems) as [string, number][];
   const [total, setTotal] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(false); 
 
   const addTotal = () => {
     let totalAmount = 0;
@@ -22,7 +22,6 @@ const Cart = () => {
       const product = products.find((p: Product) => p.id.toString() === itemId);
       if (product) {
         totalAmount += parseFloat(product.price) * quantity;
-
       }
     });
     const formattedTotal = totalAmount.toFixed(2);
@@ -33,24 +32,22 @@ const Cart = () => {
     addTotal();
   }, [cartItems, products]);
 
-  
-  
   const makePayment = async () => {
     if (!user) {
       toast.error("Please log in to proceed with checkout.");
-      Navigate("/login");
+      navigate("/login");
       return;
     }
-  
+
     const stripe = await loadStripe(
       "pk_test_51QmILUB7AOLTKU93Je2qFMk3N1ZSawDFXE9sPsmbB7lIwy9akO11Ong7gK4KJCdXkMhwGhBLeLWermo4XcmiMJdB00JSKKRCXK"
     );
-  
+
     const body = {
       products: cartArray.map(([itemId, quantity]) => {
         const product = products.find(
           (p: Product) => p.id.toString() === itemId.toString()
-        ); 
+        );
         return {
           name: product?.name,
           price: product?.price,
@@ -59,33 +56,32 @@ const Cart = () => {
         };
       }),
     };
-  
+
     try {
+      setIsLoading(true); 
 
       const token = localStorage.getItem("authToken");
-  
+
       if (!token) {
         toast.error("Authentication token missing. Please log in again.");
-        Navigate("/login");
+        navigate("/login");
         return;
       }
-  
+
       const response = await fetch(
         "https://techzone-backend-eklh.onrender.com/api/payments/create-checkout-session",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Include the token here:
             Authorization: `Bearer ${token}`,
           },
-          // credentials: "include" is no longer necessary since we are not using cookies:
           body: JSON.stringify(body),
         }
       );
-  
+
       const { sessionId } = await response.json();
-  
+
       if (stripe) {
         const { error } = await stripe.redirectToCheckout({ sessionId });
         if (error) {
@@ -94,10 +90,10 @@ const Cart = () => {
       }
     } catch (err) {
       console.error("Payment error:", err);
+    } finally {
+      setIsLoading(false); 
     }
   };
-  
-  
 
   return (
     <div className="h-screen w-screen">
@@ -105,14 +101,14 @@ const Cart = () => {
         <div className="flex flex-col justify-center items-center h-[50%] gap-2">
           <h1 className="text-3xl font-bold">Cart</h1>
           <p className="text-sm">Your cart is currently empty.</p>
-          <button onClick={() => Navigate("/")} className="text-sm underline ">
+          <button onClick={() => navigate("/")} className="text-sm underline">
             Continue shopping
           </button>
         </div>
       ) : (
         <div className="w-full px-6 py-4 flex flex-col">
           <h1 className="text-3xl font-bold my-4 text-center">Cart</h1>
-          <button onClick={() => Navigate("/")} className="text-sm underline ">
+          <button onClick={() => navigate("/")} className="text-sm underline">
             Continue shopping
           </button>
 
@@ -185,8 +181,13 @@ const Cart = () => {
                 type="button"
                 onClick={makePayment}
                 className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full"
+                disabled={isLoading} 
               >
-                Checkout
+                {isLoading ? (
+                  <FaSpinner className="animate-spin text-white" />
+                ) : (
+                  "Checkout"
+                )}
               </button>
             </div>
           </div>
