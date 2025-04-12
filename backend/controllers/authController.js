@@ -84,42 +84,36 @@ const loginUser = async (req, res) => {
 
 const getProfile = (req, res) => {
   const authHeader = req.headers.authorization;
-
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ error: "Unauthorized: No token provided" });
   }
 
   const token = authHeader.split(" ")[1];
-
   jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
     if (err) {
       console.error("Token verification failed:", err);
       return res.status(403).json({ error: "Invalid token" });
     }
-
-    return res.json(user);
+ 
+    return res.json({ user });
   });
 };
 
 const logoutUser = (req, res) => {
-
   res.json({ message: "Logout handled on frontend" });
 };
 
 const authenticateUser = (req, res, next) => {
   const authHeader = req.headers.authorization;
-
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ error: "Unauthorized: No token provided" });
   }
 
   const token = authHeader.split(" ")[1];
-
   jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
     if (err) {
       return res.status(403).json({ error: "Forbidden: Invalid token" });
     }
-
     req.user = user;
     next();
   });

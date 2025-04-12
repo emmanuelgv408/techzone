@@ -19,7 +19,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
         const token = localStorage.getItem("authToken");
         if (!token) return;
 
-        // Send the token in the Authorization header
         const res = await axios.get(
           "https://techzone-backend-eklh.onrender.com/auth/profile",
           {
@@ -28,8 +27,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
             },
           }
         );
-
-        // Assuming your backend returns { user: ... } in the response
         setUser(res.data.user);
       } catch (error) {
         console.error("Failed to fetch profile:", error);
