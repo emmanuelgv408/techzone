@@ -184,7 +184,7 @@ const Cart = () => {
                 disabled={isLoading} 
               >
                 {isLoading ? (
-                  <FaSpinner className="animate-spin text-white" />
+                  <FaSpinner className="animate-spin mr-2" />
                 ) : (
                   "Checkout"
                 )}

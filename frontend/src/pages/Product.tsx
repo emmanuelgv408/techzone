@@ -132,7 +132,7 @@ const Product = () => {
             onClick={makePayment}
           >
             {loadingBuyNow ? (
-              <FaSpinner className="animate-spin" size={20} color="#fff" />
+              <FaSpinner className="animate-spin mr-2"  />
             ) : (
               "Buy Now"
             )}

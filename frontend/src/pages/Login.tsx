@@ -18,7 +18,7 @@ const Login = () => {
 
     const success = await loginUser(formData.email, formData.password);
     if (success) {
-      navigate("/"); // Redirect to home page
+      navigate("/"); 
     }
     setIsLoading(false);
   };
@@ -61,7 +61,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Register Link */}
         <div className="text-center mt-4">
           <span className="text-sm text-gray-600">
             Don't have an account?{" "}
