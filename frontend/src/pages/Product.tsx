@@ -131,11 +131,11 @@ const Product = () => {
           <button
             type="button"
             onClick={makePayment}
-            className="mt-3 border rounded bg-tan py-2 text-sm tracking-widest uppercase text-white w-full flex items-center justify-center"
+            className="mt-3 w-60 uppercase border rounded bg-tan py-2 text-[0.6rem] tracking-widest uppercase text-white flex items-center justify-center"
             disabled={isLoading}
           >
             {isLoading ? (
-              <FaSpinner className="animate-spin mr-2" />
+              <FaSpinner className="animate-spin mr-2" size={20} color="#fff" />
             ) : (
               "Buy Now"
             )}
