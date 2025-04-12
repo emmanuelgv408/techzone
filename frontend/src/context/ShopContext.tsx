@@ -3,27 +3,35 @@ import { products } from "../assets/assets";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-
 export const ShopContext = createContext<any>(null);
 
 interface ShopContextProviderProps {
   children: ReactNode;
 }
 
-
 const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const [cartItems, setCartItems] = useState<{ [key: string]: number }>({});
   const [user, setUser] = useState<string>("");
 
-
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await axios.get("/auth/profile", { withCredentials: true });
-        setUser(res.data); 
+        const token = localStorage.getItem("authToken");
+        if (!token) return;
+
+        const res = await axios.get(
+          "https://techzone-backend-eklh.onrender.com/auth/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setUser(res.data.user);
       } catch (error) {
         console.error("Failed to fetch profile:", error);
-        setUser(''); 
+        setUser("");
       }
     };
 
@@ -32,7 +40,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
 
   const logoutUser = async () => {
     try {
-      await axios.post("/auth/logout", {}, { withCredentials: true });
+      localStorage.removeItem("authToken");
       setUser("");
       toast.success("Logged out successfully!");
     } catch (error) {
@@ -40,7 +48,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
       toast.error("Logout failed. Please try again.");
     }
   };
- 
+
   const loginUser = async (email: string, password: string) => {
     try {
       const res = await axios.post(
@@ -63,11 +71,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
       return false;
     }
   };
-  
-  
-
- 
-  
 
   const currency = "$";
   const delivery_fee = 10;
@@ -103,9 +106,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     }
   };
 
-  
-  
-
   const value = {
     products,
     currency,
@@ -120,8 +120,6 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     setUser,
     logoutUser,
     loginUser,
-
-
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

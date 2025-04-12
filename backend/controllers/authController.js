@@ -2,25 +2,8 @@ const User = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const jwt = require("jsonwebtoken");
 
-
 const test = (req, res) => {
   res.json("test is working");
-};
-const authenticateUser = (req, res, next) => {
-  const { token } = req.cookies;
-
-  if (!token) {
-    return res.status(401).json({ error: "Unauthorized: No token provided" });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: "Forbidden: Invalid token" });
-    }
-
-    req.user = user; 
-    next(); 
-  });
 };
 
 const registerUser = async (req, res) => {
@@ -33,7 +16,7 @@ const registerUser = async (req, res) => {
 
     if (!password || password.length < 6) {
       return res.status(400).json({
-        error: "Password is required and should be at least 6 characters long",
+        error: "Password must be at least 6 characters long",
       });
     }
 
@@ -41,6 +24,7 @@ const registerUser = async (req, res) => {
     if (exist) {
       return res.status(400).json({ error: "Email already taken" });
     }
+
     const hashedPassword = await hashPassword(password);
 
     const user = await User.create({
@@ -71,71 +55,82 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ error: "Incorrect password" });
     }
 
-    jwt.sign(
-      { email: user.email, id: user._id, name: user.name, lastName: user.lastName },
+    const token = jwt.sign(
+      {
+        email: user.email,
+        id: user._id,
+        name: user.name,
+        lastName: user.lastName,
+      },
       process.env.JWT_SECRET,
-      (err, token) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).json({ error: "Token generation failed" });
-        }
-
-        
-        res
-          .cookie('token', token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'None',
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
-          })
-          .json({ message: "Login successful", user });
-      }
+      { expiresIn: "7d" }
     );
 
+    return res.json({
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+      },
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Login error:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
 
-const logoutUser = (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-  });
-  res.json({ message: "Logged out successfully" });
-};
-
 const getProfile = (req, res) => {
-  console.log("🔥 Hitting /auth/profile route");
-  console.log("Incoming cookies:", req.cookies);
+  const authHeader = req.headers.authorization;
 
-  const { token } = req.cookies;
-
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-      if (err) {
-        console.log("Token verification failed:", err);
-        return res.status(403).json({ error: 'Invalid token' });
-      }
-      console.log("✅ Token verified. User:", user);
-      res.json(user);
-    });
-  } else {
-    console.log("❌ No token found in cookies");
-    res.status(401).json({ error: 'No token provided' }); 
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Unauthorized: No token provided" });
   }
+
+  const token = authHeader.split(" ")[1];
+
+  jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+    if (err) {
+      console.error("Token verification failed:", err);
+      return res.status(403).json({ error: "Invalid token" });
+    }
+
+    return res.json(user);
+  });
 };
 
+const logoutUser = (req, res) => {
+  // Frontend will handle token removal from localStorage
+  res.json({ message: "Logout handled on frontend" });
+};
 
+// Optional middleware if needed for protected routes
+const authenticateUser = (req, res, next) => {
+  const authHeader = req.headers.authorization;
 
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Unauthorized: No token provided" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: "Forbidden: Invalid token" });
+    }
+
+    req.user = user;
+    next();
+  });
+};
 
 module.exports = {
   test,
-  authenticateUser,
   registerUser,
   loginUser,
   getProfile,
-  logoutUser
+  logoutUser,
+  authenticateUser,
 };
