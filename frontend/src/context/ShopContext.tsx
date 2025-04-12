@@ -19,6 +19,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
         const token = localStorage.getItem("authToken");
         if (!token) return;
 
+        // Send the token in the Authorization header
         const res = await axios.get(
           "https://techzone-backend-eklh.onrender.com/auth/profile",
           {
@@ -28,6 +29,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
           }
         );
 
+        // Assuming your backend returns { user: ... } in the response
         setUser(res.data.user);
       } catch (error) {
         console.error("Failed to fetch profile:", error);
@@ -53,14 +55,14 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     try {
       const res = await axios.post(
         "https://techzone-backend-eklh.onrender.com/auth/login",
-        { email, password },
-        { withCredentials: true }
+        { email, password }
       );
 
       if (res.data.error) {
         toast.error(res.data.error);
         return false;
       } else {
+        localStorage.setItem("authToken", res.data.token);
         setUser(res.data.user);
         toast.success("Login successful!");
         return true;
@@ -89,7 +91,7 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
   const removeFromCart = (itemId: string) => {
     const updatedCart = { ...cartItems };
     if (updatedCart[itemId]) {
-      delete updatedCart[itemId]; // Remove the item from the cart
+      delete updatedCart[itemId];
       setCartItems(updatedCart);
     }
   };
@@ -98,9 +100,9 @@ const ShopContextProvider = ({ children }: ShopContextProviderProps) => {
     const updatedCart = { ...cartItems };
     if (updatedCart[itemId]) {
       if (updatedCart[itemId] === 1) {
-        delete updatedCart[itemId]; // Remove item if quantity is 0
+        delete updatedCart[itemId];
       } else {
-        updatedCart[itemId] -= 1; // Decrease quantity
+        updatedCart[itemId] -= 1;
       }
       setCartItems(updatedCart);
     }

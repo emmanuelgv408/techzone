@@ -102,11 +102,10 @@ const getProfile = (req, res) => {
 };
 
 const logoutUser = (req, res) => {
-  // Frontend will handle token removal from localStorage
+
   res.json({ message: "Logout handled on frontend" });
 };
 
-// Optional middleware if needed for protected routes
 const authenticateUser = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
